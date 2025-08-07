@@ -13,4 +13,8 @@
   <ItemGroup>
     <ProjectReference Include="..\EDShyrka.UI\EDShyrka.UI.csproj" />
   </ItemGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent" Condition="'$(IsPublishing)' != 'true'">
+    <Exec Command="dotnet publish EDShyrka.Browser.csproj -c $(ConfigurationName) -o &quot;$(SolutionDir)EDShyrka/bin/$(ConfigurationName)/net9.0&quot; /p:IsPublishing=true" />
+  </Target>
 </Project>
