@@ -19,7 +19,7 @@ public partial class MainViewModel : ViewModelBase
         }
         else
         {
-            Greeting = "Welcome to EDShyrka Browser !";
+            Greeting = $"Welcome to EDShyrka Browser ! (host is {JSInterop.getHostAddress()})";
             _clickMeCommand = new RelayCommand(IncrementCounter);
         }
     }
