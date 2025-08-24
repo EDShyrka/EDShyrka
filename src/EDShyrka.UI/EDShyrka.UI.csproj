@@ -22,4 +22,8 @@
     </PackageReference>
     <PackageReference Include="CommunityToolkit.Mvvm" />
   </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\EDShyrka.Logging\EDShyrka.Logging.csproj" />
+  </ItemGroup>
 </Project>
