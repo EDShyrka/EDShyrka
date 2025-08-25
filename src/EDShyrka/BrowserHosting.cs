@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Server.Kestrel.Core;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
 using System;
@@ -20,15 +21,17 @@ namespace EDShyrka
             var builder = WebApplication.CreateBuilder(webApplicationOptions);
             builder.ConfigureAppConfigurationDelegate();
             builder.WebHost.UseKestrelCore().ConfigureKestrel(ConfigureKestrel);
+			builder.Services.AddControllers();
 
-            var app = builder.Build();
+			var app = builder.Build();
             app.UseDefaultFiles(new DefaultFilesOptions { FileProvider = new PhysicalFileProvider(contentRoot) });
             app.UseStaticFiles(new StaticFileOptions { FileProvider = new PhysicalFileProvider(contentRoot), ServeUnknownFileTypes = true });
 
             app.MapGet("/hello", () => $"{DateTime.Now:hh:mm:ss} - Welcome to EDShyrka !");
-            app.UseWebSockets(new WebSocketOptions { });
+			app.UseWebSockets(new WebSocketOptions { });
+			app.MapControllers();
 
-            cancellationTokenSource = new CancellationTokenSource();
+			cancellationTokenSource = new CancellationTokenSource();
             return app.StartAsync(cancellationTokenSource.Token);
         }
 
