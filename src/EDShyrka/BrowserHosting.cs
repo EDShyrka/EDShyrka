@@ -22,12 +22,11 @@ namespace EDShyrka
             builder.ConfigureAppConfigurationDelegate();
             builder.WebHost.UseKestrelCore().ConfigureKestrel(ConfigureKestrel);
 			builder.Services.AddControllers();
+            builder.ConfigureLogging();
 
 			var app = builder.Build();
             app.UseDefaultFiles(new DefaultFilesOptions { FileProvider = new PhysicalFileProvider(contentRoot) });
             app.UseStaticFiles(new StaticFileOptions { FileProvider = new PhysicalFileProvider(contentRoot), ServeUnknownFileTypes = true });
-
-            app.MapGet("/hello", () => $"{DateTime.Now:hh:mm:ss} - Welcome to EDShyrka !");
 			app.UseWebSockets(new WebSocketOptions { });
 			app.MapControllers();
 
