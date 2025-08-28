@@ -3,21 +3,17 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
+using EDShyrka.Mvc.Filters;
 
 namespace EDShyrka.Mvc
 {
 	[ApiController]
 	[Route("ws")]
+	[TypeFilter<WebSocketAuthorizationFilter>]
 	public class WebSocketController : ControllerBase
 	{
 		public async Task Get()
 		{
-			if (HttpContext.WebSockets.IsWebSocketRequest == false)
-			{
-				Response.StatusCode = StatusCodes.Status403Forbidden;
-				return;
-			}
-
 			// accept the client connection
 			using var webSocket = await HttpContext.WebSockets.AcceptWebSocketAsync();
 			while(webSocket.State == System.Net.WebSockets.WebSocketState.Open)
