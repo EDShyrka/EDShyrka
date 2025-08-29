@@ -6,6 +6,7 @@ using EDShyrka.Logging;
 using EDShyrka.UI.ViewModels;
 using EDShyrka.UI.Views;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using System;
 using System.Linq;
 
@@ -13,25 +14,23 @@ namespace EDShyrka.UI;
 
 public partial class App : Application
 {
-	private ServiceProvider _services;
+	#region properties
+	/// <summary>
+	/// Provide access to <see cref="IServiceProvider"/> instance.
+	/// </summary>
+	public IServiceProvider? ServiceProvider { get; private set; }
+	#endregion properties
 
+	#region methods
 	public override void Initialize()
 	{
 		ConfigureServices();
 		AvaloniaXamlLoader.Load(this);
 	}
 
-	private void ConfigureServices()
-	{
-		var collection = new ServiceCollection();
-		collection.AddLogging(o => o.ConfigureLogging());
-		collection.AddSingleton<MainViewModel>();
-		_services = collection.BuildServiceProvider();
-	}
-
 	public override void OnFrameworkInitializationCompleted()
 	{
-		var mainViewModel = _services.GetRequiredService<MainViewModel>();
+		var mainViewModel = ServiceProvider!.GetRequiredService<MainViewModel>();
 		if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
 		{
 			// Avoid duplicate validations from both Avalonia and the CommunityToolkit. 
@@ -54,6 +53,14 @@ public partial class App : Application
 		base.OnFrameworkInitializationCompleted();
 	}
 
+	private void ConfigureServices()
+	{
+		var collection = new ServiceCollection();
+		collection.AddLogging(o => o.ConfigureLogging());
+		collection.AddSingleton<MainViewModel>();
+		ServiceProvider = collection.BuildServiceProvider();
+	}
+
 	private void DisableAvaloniaDataAnnotationValidation()
 	{
 		// Get an array of plugins to remove
@@ -66,4 +73,5 @@ public partial class App : Application
 			BindingPlugins.DataValidators.Remove(plugin);
 		}
 	}
+	#endregion methods
 }
