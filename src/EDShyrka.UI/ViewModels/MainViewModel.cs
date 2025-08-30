@@ -1,48 +1,40 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
-using System.Windows.Input;
 
 namespace EDShyrka.UI.ViewModels;
 
 public partial class MainViewModel : ViewModelBase
 {
-	private int _counter = 0;
+	private readonly ObservableCollection<string> _messages = [];
 
 	public MainViewModel()
 	{
-		if (OperatingSystem.IsBrowser() == false)
-		{
-			Greeting = "Welcome to EDShyrka Desktop !";
-			_clickMeCommand = new RelayCommand(LaunchBrowser);
-		}
-		else
-		{
-			Greeting = $"Welcome to EDShyrka Browser ! (host is {JSInterop.getHostAddress()})";
-			_clickMeCommand = new RelayCommand(IncrementCounter);
-		}
-	}
-
-	private void LaunchBrowser()
-	{
-		var uriBuilder = new UriBuilder("http", "localhost", 12080);
-		Process.Start(new ProcessStartInfo { FileName = uriBuilder.Uri.ToString(), UseShellExecute = true });
-		ClickMeCommand = new RelayCommand(IncrementCounter);
+		Greeting = AppHelpers.IsRunningAsWebApp
+			? "EDShyrka Browser"
+			: "EDShyrka Desktop";
 	}
 
 	public string Greeting { get; }
 
 	[ObservableProperty]
-	private string _labelText = "Hello, World!";
+	private string _message = "Hello, World!";
 
-
-	[ObservableProperty]
-	private ICommand _clickMeCommand;
+	public IEnumerable<string> Messages { get => _messages; }
 
 	[RelayCommand]
-	public void IncrementCounter()
+	private void OpenInBrowser()
 	{
-		LabelText = $"Clicked {++_counter} times !";
+		var uriBuilder = new UriBuilder("http", "localhost", 12080);
+		Process.Start(new ProcessStartInfo { FileName = uriBuilder.Uri.ToString(), UseShellExecute = true });
+	}
+
+	[RelayCommand]
+	private void SendMessage()
+	{
+
 	}
 }
