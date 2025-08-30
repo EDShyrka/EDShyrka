@@ -2,11 +2,9 @@ using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Data.Core.Plugins;
 using Avalonia.Markup.Xaml;
-using EDShyrka.Logging;
 using EDShyrka.UI.ViewModels;
 using EDShyrka.UI.Views;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using System;
 using System.Linq;
 
@@ -49,7 +47,6 @@ public partial class App : Application
 	private void ConfigureServices()
 	{
 		var collection = new ServiceCollection();
-		collection.AddLogging(o => o.ConfigureLogging());
 		collection.AddSingleton<MainViewModel>();
 		ServiceProvider = collection.BuildServiceProvider();
 	}

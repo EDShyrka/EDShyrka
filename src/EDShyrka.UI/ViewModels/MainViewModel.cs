@@ -1,6 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using Microsoft.Extensions.Logging;
 using System;
 using System.Diagnostics;
 using System.Windows.Input;
@@ -9,13 +8,10 @@ namespace EDShyrka.UI.ViewModels;
 
 public partial class MainViewModel : ViewModelBase
 {
-	private readonly ILogger _logger;
-
 	private int _counter = 0;
 
-	public MainViewModel(ILogger<MainViewModel> logger)
+	public MainViewModel()
 	{
-		_logger = logger;
 		if (OperatingSystem.IsBrowser() == false)
 		{
 			Greeting = "Welcome to EDShyrka Desktop !";
@@ -26,7 +22,6 @@ public partial class MainViewModel : ViewModelBase
 			Greeting = $"Welcome to EDShyrka Browser ! (host is {JSInterop.getHostAddress()})";
 			_clickMeCommand = new RelayCommand(IncrementCounter);
 		}
-		_logger.Log(LogLevel.Information, "Started");
 	}
 
 	private void LaunchBrowser()
@@ -49,6 +44,5 @@ public partial class MainViewModel : ViewModelBase
 	public void IncrementCounter()
 	{
 		LabelText = $"Clicked {++_counter} times !";
-		_logger.Log(LogLevel.Information, "Button clicked {count} times", _counter);
 	}
 }
