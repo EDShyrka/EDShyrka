@@ -1,5 +1,7 @@
 using System.Runtime.InteropServices.JavaScript;
 
+namespace EDShyrka.UI;
+
 public static partial class JSInterop
 {
     [JSImport("getQueryString", "jsInterop")]
