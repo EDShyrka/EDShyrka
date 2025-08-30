@@ -37,5 +37,15 @@ namespace EDShyrka.UI
         /// True if the WPF application is in design mode, false otherwise.
         /// </summary>
         public static bool IsDesignMode { get => Application.Current is App == false; }
+
+		/// <summary>
+		/// True when the application is running on the host as a desktop application, false otherwise.
+		/// </summary>
+		public static bool IsRunningAsDesktopApp { get => IsRunningAsWebApp == false; }
+
+		/// <summary>
+		/// True when the application is running in a browser, false otherwise.
+		/// </summary>
+		public static bool IsRunningAsWebApp { get => OperatingSystem.IsBrowser(); }
     }
 }
