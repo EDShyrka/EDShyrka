@@ -6,11 +6,9 @@
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="EDShyrka.UI.Views.MainView"
              x:DataType="vm:MainViewModel">
-  <Design.DataContext>
-    <!-- This only sets the DataContext for the previewer in an IDE,
-         to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
-    <vm:MainViewModel />
-  </Design.DataContext>
+  <UserControl.DataContext>
+    <vm:ViewModelProvider ViewModelType="{x:Type vm:MainViewModel}" />
+  </UserControl.DataContext>
 
 	<Grid Background="{DynamicResource ThemeBackground}">
 		<Grid.RowDefinitions>
