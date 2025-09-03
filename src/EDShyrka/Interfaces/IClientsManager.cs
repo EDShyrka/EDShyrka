@@ -10,7 +10,7 @@ namespace EDShyrka.Interfaces
 
 		public void RegisterClient(WebSocketClient client);
 
-		public IEnumerable<WebSocketClient> Client { get; }
+		public IEnumerable<WebSocketClient> Clients { get; }
 	}
 
 	public delegate void ClientConnectedEventHandler(object sender, ClientConnectedEventArgs args);
