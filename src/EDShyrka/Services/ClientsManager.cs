@@ -1,7 +1,9 @@
 ﻿using EDShyrka.Interfaces;
 using EDShyrka.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace EDShyrka.Services
 {
@@ -11,11 +13,12 @@ namespace EDShyrka.Services
 	/// </summary>
 	public class ClientsManager : IClientsManager
 	{
+		#region fields
 		private readonly ILogger _logger;
 		private static readonly List<WebSocketClient> _clients = [];
+		#endregion fields
 
-		public event ClientConnectedEventHandler? ClientConnected;
-
+		#region ctor
 		/// <summary>
 		/// Initializes a new instance of the <see cref="ClientsManager"/> class.
 		/// </summary>
@@ -24,6 +27,13 @@ namespace EDShyrka.Services
 		{
 			_logger = logger;
 		}
+		#endregion ctor
+
+		#region IClientsManager
+		/// <summary>
+		/// Occurs when a client successfully establishes a connection.
+		/// </summary>
+		public event ClientConnectedEventHandler? ClientConnected;
 
 		/// <summary>
 		/// Gets the collection of connected WebSocket clients.
@@ -33,13 +43,23 @@ namespace EDShyrka.Services
 		/// <summary>
 		/// Registers a new WebSocket client and raises the <see cref="ClientConnected"/> event.
 		/// </summary>
-		public void RegisterClient(WebSocketClient client)
+		public async Task<WebSocketClient> ConnectClient(WebSocketManager webSocketManager)
 		{
+			var webSocket = await webSocketManager.AcceptWebSocketAsync();
+			_logger.Log(LogLevel.Information, "WebSocket connected");
+
+			var client = new WebSocketClient(webSocket);
 			_clients.Add(client);
+			_logger.Log(LogLevel.Information, "client registered");
+
 			client.ClientDisconnected += OnClientDisconnected;
 			ClientConnected?.Invoke(this, new ClientConnectedEventArgs(client));
-		}
 
+			return client;
+		}
+		#endregion IClientsManager
+
+		#region methods
 		private void OnClientDisconnected(object sender, WebSocketClientDisconnectedEventArgs args)
 		{
 			_logger.Log(LogLevel.Information, "Client disconnected");
@@ -51,5 +71,6 @@ namespace EDShyrka.Services
 			client.ClientDisconnected -= OnClientDisconnected;
 			_clients.Remove(client);
 		}
+		#endregion methods
 	}
 }
