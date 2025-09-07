@@ -22,7 +22,8 @@ namespace EDShyrka
             builder.ConfigureAppConfigurationDelegate();
             builder.WebHost.UseKestrelCore().ConfigureKestrel(ConfigureKestrel);
 			builder.Services.AddControllers();
-            builder.ConfigureLogging();
+            builder.Services.AddSingleton<Interfaces.IClientsManager, Services.ClientsManager>();
+			builder.ConfigureLogging();
 
 			var app = builder.Build();
             app.UseDefaultFiles(new DefaultFilesOptions { FileProvider = new PhysicalFileProvider(contentRoot) });
