@@ -10,28 +10,31 @@ namespace EDShyrka.UI.ViewModels
     public class ViewModelProvider : MarkupExtension
     {
         #region ctor
-        /// <summary>
-        /// Initializes a <see cref="ViewModelProvider"/> instance.
-        /// </summary>
-        public ViewModelProvider()
-        {
-        }
+		/// <summary>
+		/// Initializes a <see cref="ViewModelProvider"/> instance.
+		/// </summary>
+		/// <param name="viewModelType">The type of requested viewmodel.</param>
+		public ViewModelProvider(Type viewModelType)
+            : this(viewModelType, viewModelType)
+		{
+		}
 
-        /// <summary>
-        /// Initializes a <see cref="ViewModelProvider"/> instance.
-        /// </summary>
-        /// <param name="viewModelType">The type of requested viewmodel.</param>
-        public ViewModelProvider(Type viewModelType)
-        {
-            ViewModelType = viewModelType;
-        }
-        #endregion ctor
+		/// <summary>
+		/// Initializes a <see cref="ViewModelProvider"/> instance.
+		/// </summary>
+		/// <param name="viewModelType">The type of requested viewmodel.</param>
+		public ViewModelProvider(Type viewModelType, Type designViewModelType)
+		{
+			ViewModelType = viewModelType;
+			DesignViewModelType = designViewModelType;
+		}
+		#endregion ctor
 
-        #region properties
-        /// <summary>
-        /// The type of viewmodel for runtime.
-        /// </summary>
-        public Type ViewModelType { get; set; }
+		#region properties
+		/// <summary>
+		/// The type of viewmodel for runtime.
+		/// </summary>
+		public Type ViewModelType { get; set; }
 
         /// <summary>
         /// The type of viewmodel for design time.
@@ -48,9 +51,9 @@ namespace EDShyrka.UI.ViewModels
         public override object ProvideValue(IServiceProvider serviceProvider)
         {
             if (AppHelpers.IsDesignMode)
-                return DesignViewModelType ?? Activator.CreateInstance(DesignViewModelType);
+                return Activator.CreateInstance(DesignViewModelType)!;
 
-			return ((App)Application.Current).ServiceProvider.GetService(ViewModelType);
+			return ((App)Application.Current!).ServiceProvider!.GetService(ViewModelType)!;
         }
         #endregion methods
     }

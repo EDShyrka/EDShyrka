@@ -6,11 +6,8 @@
              xmlns:vm="clr-namespace:EDShyrka.UI.ViewModels"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="EDShyrka.UI.Views.MainView"
-             x:DataType="vm:MainViewModel">
-  <UserControl.DataContext>
-    <vm:ViewModelProvider ViewModelType="{x:Type vm:MainViewModel}" />
-  </UserControl.DataContext>
-
+             x:DataType="vm:MainViewModel"
+             DataContext="{vm:ViewModelProvider vm:MainViewModel}">
   <Grid Background="{DynamicResource ThemeBackground}">
 		<Grid.RowDefinitions>
       <RowDefinition Height="Auto"/>
