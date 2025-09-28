@@ -22,9 +22,10 @@
 
   <ItemGroup>
     <ProjectReference Include="..\EDShyrka.Logging\EDShyrka.Logging.csproj" />
+    <ProjectReference Include="..\EDShyrka.Shared\EDShyrka.Shared.csproj" />
     <ProjectReference Include="..\EDShyrka.UI\EDShyrka.UI.csproj" />
   </ItemGroup>
-
+  
   <ItemGroup>
     <None Update="appsettings.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
