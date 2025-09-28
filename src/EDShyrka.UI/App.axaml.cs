@@ -2,6 +2,7 @@ using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Data.Core.Plugins;
 using Avalonia.Markup.Xaml;
+using EDShyrka.UI.Services;
 using EDShyrka.UI.ViewModels;
 using EDShyrka.UI.Views;
 using Microsoft.Extensions.DependencyInjection;
@@ -46,8 +47,9 @@ public partial class App : Application
 
 	private void ConfigureServices()
 	{
-		var collection = new ServiceCollection();
-		collection.AddSingleton<MainViewModel>();
+		var collection = new ServiceCollection()
+			.AddSingleton<MainViewModel>()
+			.AddSingleton<CommunicationService>();
 		ServiceProvider = collection.BuildServiceProvider();
 	}
 
