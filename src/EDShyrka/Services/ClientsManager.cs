@@ -1,9 +1,9 @@
 ﻿using EDShyrka.Interfaces;
-using EDShyrka.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using EDShyrka.Shared;
 
 namespace EDShyrka.Services
 {
@@ -15,7 +15,7 @@ namespace EDShyrka.Services
 	{
 		#region fields
 		private readonly ILogger _logger;
-		private static readonly List<WebSocketClient> _clients = [];
+		private static readonly List<WebSocketWrapper> _clients = [];
 		#endregion fields
 
 		#region ctor
@@ -38,21 +38,21 @@ namespace EDShyrka.Services
 		/// <summary>
 		/// Gets the collection of connected WebSocket clients.
 		/// </summary>
-		public IEnumerable<WebSocketClient> Clients => _clients;
+		public IEnumerable<WebSocketWrapper> Clients => _clients;
 
 		/// <summary>
 		/// Registers a new WebSocket client and raises the <see cref="ClientConnected"/> event.
 		/// </summary>
-		public async Task<WebSocketClient> ConnectClient(WebSocketManager webSocketManager)
+		public async Task<WebSocketWrapper> ConnectClient(WebSocketManager webSocketManager)
 		{
 			var webSocket = await webSocketManager.AcceptWebSocketAsync();
 			_logger.Log(LogLevel.Information, "WebSocket connected");
 
-			var client = new WebSocketClient(webSocket);
+			var client = new WebSocketWrapper(webSocket);
 			_clients.Add(client);
 			_logger.Log(LogLevel.Information, "client registered");
 
-			client.ClientDisconnected += OnClientDisconnected;
+			client.Disconnected += OnClientDisconnected;
 			ClientConnected?.Invoke(this, new ClientConnectedEventArgs(client));
 
 			return client;
@@ -60,15 +60,15 @@ namespace EDShyrka.Services
 		#endregion IClientsManager
 
 		#region methods
-		private void OnClientDisconnected(object sender, WebSocketClientDisconnectedEventArgs args)
+		private void OnClientDisconnected(object sender, WebSocketWrapper.DisconnectedEventArgs args)
 		{
 			_logger.Log(LogLevel.Information, "Client disconnected");
-			RemoveClient(args.Client);
+			RemoveClient(args.WebSocketWrapper);
 		}
 
-		private void RemoveClient(WebSocketClient client)
+		private void RemoveClient(WebSocketWrapper client)
 		{
-			client.ClientDisconnected -= OnClientDisconnected;
+			client.Disconnected -= OnClientDisconnected;
 			_clients.Remove(client);
 		}
 		#endregion methods

@@ -30,7 +30,7 @@ namespace EDShyrka.Mvc
 		{
 			_logger.Log(LogLevel.Information, "Incoming WebSocket client");
 			using var client = await _clientsManager.ConnectClient(HttpContext.WebSockets);
-			await client.Listener;
+			await client.ListenTask;
 		}
 		#endregion methods
 	}

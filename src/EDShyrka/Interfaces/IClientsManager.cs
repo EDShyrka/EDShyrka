@@ -1,4 +1,4 @@
-﻿using EDShyrka.Models;
+﻿using EDShyrka.Shared;
 using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
@@ -20,12 +20,12 @@ namespace EDShyrka.Interfaces
 		/// <summary>
 		/// Gets the collection of connected WebSocket clients.
 		/// </summary>
-		public IEnumerable<WebSocketClient> Clients { get; }
+		public IEnumerable<WebSocketWrapper> Clients { get; }
 
 		/// <summary>
 		/// Registers a new WebSocket client and raises the <see cref="ClientConnected"/> event.
 		/// </summary>
-		public Task<WebSocketClient> ConnectClient(WebSocketManager webSocketManager);
+		public Task<WebSocketWrapper> ConnectClient(WebSocketManager webSocketManager);
 	}
 
 	/// <summary>
@@ -44,7 +44,7 @@ namespace EDShyrka.Interfaces
 		/// Initializes a new instance of the <see cref="ClientConnectedEventArgs"/> class.
 		/// </summary>
 		/// <param name="client">The <see cref="WebSocketClient"/> instance representing the connected client.</param>
-		public ClientConnectedEventArgs(WebSocketClient client)
+		public ClientConnectedEventArgs(WebSocketWrapper client)
 		{
 			Client = client;
 		}
@@ -52,6 +52,6 @@ namespace EDShyrka.Interfaces
 		/// <summary>
 		/// Gets the WebSocket client used to manage WebSocket connections.
 		/// </summary>
-		public WebSocketClient Client { get; }
+		public WebSocketWrapper Client { get; }
 	}
 }
