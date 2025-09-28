@@ -1,28 +1,40 @@
 ﻿using Avalonia.Threading;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using EDShyrka.Shared;
+using EDShyrka.UI.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
-using System.Net.WebSockets;
 using System.Threading.Tasks;
 
 namespace EDShyrka.UI.ViewModels;
 
 public partial class MainViewModel : ViewModelBase
 {
+	private readonly CommunicationService _communicationService;
 	private readonly ObservableCollection<string> _messages = [];
-	private ClientWebSocket _clientWebSocket;
-	private Task _receiveTask;
 
-	public MainViewModel()
+	public MainViewModel(CommunicationService communicationService)
 	{
+		_communicationService = communicationService;
 		Greeting = AppHelpers.IsRunningAsWebApp
 			? "EDShyrka Browser"
 			: "EDShyrka Desktop";
-		_clientWebSocket = new ClientWebSocket();
-		_receiveTask = Task.Factory.StartNew(Receive, TaskCreationOptions.LongRunning);
+		_communicationService.GetConnection().ContinueWith(t => RegisterConnection(t.Result));
+	}
+
+	private void RegisterConnection(WebSocketWrapper wrapper)
+	{
+		wrapper.RequestReceived += OnRequestReceived;
+
+	}
+
+	private void OnRequestReceived(object sender, WebSocketWrapper.RequestReceivedEventArgs args)
+	{
+		var message = System.Text.Encoding.UTF8.GetString(args.Data);
+		Dispatcher.UIThread.Post(() => _messages.Add(message));
 	}
 
 	public string Greeting { get; }
@@ -32,6 +44,9 @@ public partial class MainViewModel : ViewModelBase
 
 	public IEnumerable<string> Messages { get => _messages; }
 
+	[ObservableProperty]
+	private bool _isLandingGearDeployed;
+
 	[RelayCommand]
 	private void OpenInBrowser()
 	{
@@ -40,38 +55,19 @@ public partial class MainViewModel : ViewModelBase
 	}
 
 	[RelayCommand]
+	private async void ToggleLandingGear(string parameter)
+	{
+		var buffer = System.Text.Encoding.UTF8.GetBytes(parameter);
+		var connection = await _communicationService.GetConnection();
+		connection.SendAsync(buffer, default);
+	}
+
+	[RelayCommand]
 	private async Task SendMessage()
 	{
 		var buffer = System.Text.Encoding.UTF8.GetBytes(Message);
-		await _clientWebSocket.SendAsync(new Memory<byte>(buffer), WebSocketMessageType.Binary, true, default);
+		var connection = await _communicationService.GetConnection();
+		connection.SendAsync(buffer, default);
 	}
 
-	private async Task Receive()
-	{
-		Console.WriteLine("Receive started");
-		await _clientWebSocket.ConnectAsync(new Uri("ws://localhost:12080/ws"), default);
-		Console.WriteLine("Socket connected");
-
-		var buffer = new byte[1024];
-		while (_clientWebSocket.State == WebSocketState.Open)
-		{
-			Console.WriteLine("Waiting for communication");
-			var result = await _clientWebSocket.ReceiveAsync(new Memory<byte>(buffer), default);
-			Console.WriteLine($"Received {result.Count} bytes");
-			if (result.MessageType == WebSocketMessageType.Close)
-			{
-				await _clientWebSocket.CloseAsync(WebSocketCloseStatus.NormalClosure, "Closed by the MainViewModel", default);
-			Console.WriteLine("Socket closed");
-				break;
-			}
-			else if (result.MessageType == WebSocketMessageType.Binary)
-			{
-				var message = System.Text.Encoding.UTF8.GetString(buffer, 0, result.Count);
-				Console.WriteLine("Message received");
-				_ = Dispatcher.UIThread.InvokeAsync(() => _messages.Add(message));
-			}
-			// keep the connection alive
-			await Task.Delay(100);
-		}
-	}
 }
