@@ -23,4 +23,8 @@
     <PackageReference Include="CommunityToolkit.Mvvm" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" />
   </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\EDShyrka.Shared\EDShyrka.Shared.csproj" />
+  </ItemGroup>
 </Project>
