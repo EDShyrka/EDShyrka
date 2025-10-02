@@ -21,14 +21,16 @@ sealed class Program
 		if (IsSingleInstance() == false)
 		{
 			LoggingHelpers.LoggerFactory.CreateLogger("EDShyrka")
-				.Log(LogLevel.Warning, "Another instance is already running, closing");
+				.Log(LogLevel.Warning, "Another instance is already running, closing!");
 			Environment.Exit(0);
 		}
 
 		// Start the browser hosting server.
-		var hostingTask = BrowserHosting.StartAsync(args, out var hostingCancellationTokenSource);
+		var browserHosting = new BrowserHosting();
+		var hostingTask = browserHosting.StartAsync(args, out var hostingCancellationTokenSource);
 
 		// The hosting task is started, now we can run the Avalonia application.
+		args = [ $"http://localhost:{browserHosting.ServerSettings.ListeningPort}/" ];
 		BuildAvaloniaApp()
 			.StartWithClassicDesktopLifetime(args);
 

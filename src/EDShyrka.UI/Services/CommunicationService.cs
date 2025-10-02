@@ -1,4 +1,5 @@
 ﻿using EDShyrka.Shared;
+using EDShyrka.UI.Models;
 using System;
 using System.Threading.Tasks;
 
@@ -6,7 +7,14 @@ namespace EDShyrka.UI.Services
 {
 	public class CommunicationService
 	{
+		private readonly Uri _serverUri;
 		private WebSocketWrapper? _connection;
+
+		public CommunicationService(AppSettings appSettings)
+		{
+			var builder = new UriBuilder(appSettings.ServerLocation) { Path = "/ws", Scheme = "ws" };
+			_serverUri = builder.Uri;
+		}
 
 		public async Task<WebSocketWrapper> GetConnection()
 		{
@@ -27,9 +35,7 @@ namespace EDShyrka.UI.Services
 
 			if (_connection == null)
 			{
-#warning currently hard coded, must be retrieved dynamically
-				var builder = new UriBuilder("ws", "localhost", 12080, "/ws");
-				_connection = await WebSocketWrapper.ConnectAsync(builder.Uri);
+				_connection = await WebSocketWrapper.ConnectAsync(_serverUri);
 			}
 		}
 	}
