@@ -2,6 +2,7 @@ using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Data.Core.Plugins;
 using Avalonia.Markup.Xaml;
+using EDShyrka.UI.Models;
 using EDShyrka.UI.Services;
 using EDShyrka.UI.ViewModels;
 using EDShyrka.UI.Views;
@@ -29,16 +30,18 @@ public partial class App : Application
 
 	public override void OnFrameworkInitializationCompleted()
 	{
+		var appSettings = ServiceProvider.GetRequiredService<AppSettings>();
 		if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
 		{
 			// Avoid duplicate validations from both Avalonia and the CommunityToolkit. 
 			// More info: https://docs.avaloniaui.net/docs/guides/development-guides/data-validation#manage-validationplugins
 			DisableAvaloniaDataAnnotationValidation();
-
+			appSettings.ServerLocation = desktop.Args.FirstOrDefault();
 			desktop.MainWindow = new MainWindow();
 		}
 		else if (ApplicationLifetime is ISingleViewApplicationLifetime singleViewPlatform)
 		{
+			appSettings.ServerLocation = JSInterop.getHostAddress();
 			singleViewPlatform.MainView = new MainView();
 		}
 
@@ -47,7 +50,9 @@ public partial class App : Application
 
 	private void ConfigureServices()
 	{
+		var appSettings = new AppSettings();
 		var collection = new ServiceCollection()
+			.AddSingleton(appSettings)
 			.AddSingleton<MainViewModel>()
 			.AddSingleton<CommunicationService>();
 		ServiceProvider = collection.BuildServiceProvider();
