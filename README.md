@@ -1,3 +1,4 @@
+[![Build](https://github.com/EDShyrka/EDShyrka/actions/workflows/build.yml/badge.svg)](https://github.com/EDShyrka/EDShyrka/actions/workflows/build.yml)
 # EDShyrka
 A __work in progress__ a companion to enhance the gaming experience and immersion on Elite Dangerous.
 
