@@ -18,13 +18,12 @@ public partial class App : Application
 	/// <summary>
 	/// Provide access to <see cref="IServiceProvider"/> instance.
 	/// </summary>
-	public IServiceProvider? ServiceProvider { get; private set; }
+	public IServiceProvider ServiceProvider { get; init; } = ConfigureServices();
 	#endregion properties
 
 	#region methods
 	public override void Initialize()
 	{
-		ConfigureServices();
 		AvaloniaXamlLoader.Load(this);
 	}
 
@@ -37,25 +36,29 @@ public partial class App : Application
 			// More info: https://docs.avaloniaui.net/docs/guides/development-guides/data-validation#manage-validationplugins
 			DisableAvaloniaDataAnnotationValidation();
 			appSettings.ServerLocation = desktop.Args.FirstOrDefault();
-			desktop.MainWindow = new MainWindow();
+			desktop.MainWindow = ServiceProvider.GetRequiredService<MainWindow>();
 		}
 		else if (ApplicationLifetime is ISingleViewApplicationLifetime singleViewPlatform)
 		{
 			appSettings.ServerLocation = JSInterop.getHostAddress();
-			singleViewPlatform.MainView = new MainView();
+			singleViewPlatform.MainView = ServiceProvider.GetRequiredService<MainView>();
 		}
 
 		base.OnFrameworkInitializationCompleted();
 	}
 
-	private void ConfigureServices()
+	private static IServiceProvider ConfigureServices()
 	{
-		var appSettings = new AppSettings();
 		var collection = new ServiceCollection()
-			.AddSingleton(appSettings)
+			.AddSingleton<AppSettings>()
+			.AddSingleton<CommunicationService>()
+			.AddSingleton<MainWindow>()
+			.AddTransient<MainView>()
 			.AddSingleton<MainViewModel>()
-			.AddSingleton<CommunicationService>();
-		ServiceProvider = collection.BuildServiceProvider();
+			.AddTransient<ShipStatusView>()
+			.AddTransient<ShipStatusViewModel>()
+			;
+		return collection.BuildServiceProvider();
 	}
 
 	private void DisableAvaloniaDataAnnotationValidation()
