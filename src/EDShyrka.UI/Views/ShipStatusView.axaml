@@ -1,0 +1,103 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:EDShyrka.UI.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="EDShyrka.UI.Views.ShipStatusView"
+             x:DataType="vm:ShipStatusViewModel"
+             DataContext="{vm:ViewModelProvider vm:ShipStatusViewModel}">
+  <UniformGrid Margin="10" Columns="4" HorizontalAlignment="Center" VerticalAlignment="Center">
+    <UniformGrid.Styles>
+      <Style Selector="Button">
+        <Setter Property="Margin" Value="5"/>
+        <Setter Property="Width" Value="180"/>
+        <Setter Property="Height" Value="50"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+      </Style>
+    </UniformGrid.Styles>
+
+    <Button Content="Ship Docked" Command="{Binding ShipStatusCommand}" CommandParameter="Docked" />
+    <Button Content="Ship Landed" Command="{Binding ShipStatusCommand}" CommandParameter="Landed" />
+    <Button Content="LandingGearDown" Command="{Binding ShipStatusCommand}" CommandParameter="LandingGear" />
+    <Button Content="ShieldsUp" Command="{Binding ShipStatusCommand}" CommandParameter="Shields" />
+    <Button Content="Supercruise" Command="{Binding ShipStatusCommand}" CommandParameter="Supercruise" />
+    <Button Content="FlightAssistOff" Command="{Binding ShipStatusCommand}" CommandParameter="" />
+    <Button Content="HardpointsDeployed" Command="{Binding ShipStatusCommand}" CommandParameter="" />
+    <Button Content="InWing" Command="{Binding ShipStatusCommand}" CommandParameter="" />
+    <Button Content="LightsOn" Command="{Binding ShipStatusCommand}" CommandParameter="" />
+    <Button Content="CargoScoopDeployed" Command="{Binding ShipStatusCommand}" CommandParameter="" />
+    <Button Content="SilentRunning" Command="{Binding ShipStatusCommand}" CommandParameter="" />
+    <Button Content="ScoopingFuel" Command="{Binding ShipStatusCommand}" CommandParameter="" />
+    <Button Content="FsdMassLocked" Command="{Binding ShipStatusCommand}" CommandParameter="" />
+    <Button Content="FsdCharging" Command="{Binding ShipStatusCommand}" CommandParameter="" />
+    <Button Content="FsdCooldown" Command="{Binding ShipStatusCommand}" CommandParameter="" />
+    <Button Content="LowFuel" Command="{Binding ShipStatusCommand}" CommandParameter="" />
+    <Button Content="OverHeating" Command="{Binding ShipStatusCommand}" CommandParameter="" />
+    <Button Content="IsInDanger" Command="{Binding ShipStatusCommand}" CommandParameter="" />
+    <Button Content="BeingInterdicted" Command="{Binding ShipStatusCommand}" CommandParameter="" />
+    <Button Content="InMainShip" Command="{Binding ShipStatusCommand}" CommandParameter="" />
+    <Button Content="InFighter" Command="{Binding ShipStatusCommand}" CommandParameter="" />
+    <Button Content="HudInAnalysisMode" Command="{Binding ShipStatusCommand}" CommandParameter="" />
+    <Button Content="NightVision" Command="{Binding ShipStatusCommand}" CommandParameter="" />
+    <Button Content="FsdJump" Command="{Binding ShipStatusCommand}" CommandParameter="" />
+    <Button Content="GlideMode" Command="{Binding ShipStatusCommand}" CommandParameter="" />
+    <Button Content="FsdHyperdriveCharging" Command="{Binding ShipStatusCommand}" CommandParameter="" />
+  </UniformGrid>
+</UserControl>
+
+
+<!--
+Destination { System, Body, Name, Name_Localised }
+
+Balance
+LegalState
+GuiFocus
+Cargo
+Fuel
+Firegroup
+Altimeter
+HasLatLong
+Pips
+BodyName
+PlanetRadius
+Latitude
+Longitude
+Heading
+Altitude
+Gravity
+
+InSRV
+SrvHandbrake
+SrvTurret
+SrvUnderShip
+SrvDriveAssist
+SrvHighBeam
+
+PhysicalMulticrew
+TelepresenceMulticrew
+InMulticrew
+Taxi
+OnFootSocialSpace
+OnFootInHangar
+OnFootInStation
+OnFootOnPlanet
+OnFootExterior
+OnFoot
+BreathableAtmosphere
+AimDownSight
+LowOxygen
+LowHealth
+VeryHot
+Hot
+Cold
+VeryCold
+Health
+Oxygen
+Temperature
+SelectedWeapon
+SelectedWeapon_Localised
+-->
