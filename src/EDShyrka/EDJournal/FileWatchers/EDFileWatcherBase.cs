@@ -48,9 +48,6 @@ public abstract class EDFileWatcherBase
 	/// <param name="fullPath">The full path to the file that has changed.</param>
 	protected abstract void WatchedFileChanged(string? name, string fullPath);
 
-	// monitor folder for new files
-	// monitor last file for changes
-	// raise event on new file or file change
 	/// <summary>
 	/// Initializes and starts a <see cref="FileSystemWatcher"/> to monitor a specified folder for changes in files.
 	/// </summary>
@@ -62,6 +59,7 @@ public abstract class EDFileWatcherBase
 		fileWatcher.NotifyFilter = NotifyFilters.LastWrite;
 		fileWatcher.Changed += OnFileChanged;
 		fileWatcher.EnableRaisingEvents = true;
+		_logger.Log(LogLevel.Information, "Enabled FileSystemWatcher. Path: [{WatcherPath}] Filter: [{WatcherFilter}] Trigger: [{WatcherTrigger}]", journalFolder.Value, WatchedFileFilter, fileWatcher.NotifyFilter);
 		return fileWatcher;
 	}
 
@@ -72,6 +70,7 @@ public abstract class EDFileWatcherBase
 	/// <param name="e">The event data containing information about the file change, including the name and full path of the affected file.</param>
 	private void OnFileChanged(object sender, FileSystemEventArgs e)
 	{
+		_logger.Log(LogLevel.Trace, "JSON file changed. Filename: [{FileName}] FullPath: [{FullPath}]", e.Name, e.FullPath);
 		WatchedFileChanged(e.Name, e.FullPath);
 	}
 	#endregion methods
