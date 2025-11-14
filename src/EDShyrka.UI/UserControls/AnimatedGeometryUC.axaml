@@ -1,0 +1,60 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:uc="clr-namespace:UserControls"
+             mc:Ignorable="d" d:DesignWidth="80" d:DesignHeight="64"
+             x:Class="UserControls.AnimatedGeometryUC">
+  <uc:AnimatedGeometryUC.Styles>
+    <Style Selector="uc|AnimatedGeometryUC">
+      <Style.Animations>
+        <Animation Duration="00:00:01" IterationCount="INFINITE">
+          <KeyFrame Cue="0%">
+            <Setter Property="Color01" Value="#FFFF0000" />
+            <Setter Property="Color02" Value="#FF00FF00" />
+            <Setter Property="Color03" Value="#FF0000FF" />
+          </KeyFrame>
+          <KeyFrame Cue="33%">
+            <Setter Property="Color01" Value="#FF0000FF" />
+            <Setter Property="Color02" Value="#FFFF0000" />
+            <Setter Property="Color03" Value="#FF00FF00" />
+          </KeyFrame>
+          <KeyFrame Cue="66%">
+            <Setter Property="Color01" Value="#FF00FF00" />
+            <Setter Property="Color02" Value="#FF0000FF" />
+            <Setter Property="Color03" Value="#FFFF0000" />
+          </KeyFrame>
+          <KeyFrame Cue="100%">
+            <Setter Property="Color01" Value="#FFFF0000" />
+            <Setter Property="Color02" Value="#FF00FF00" />
+            <Setter Property="Color03" Value="#FF0000FF" />
+          </KeyFrame>
+        </Animation>
+      </Style.Animations>
+    </Style>
+  </uc:AnimatedGeometryUC.Styles>
+
+  <Image Stretch="Uniform">
+    <Image.Source>
+      <DrawingImage>
+        <DrawingGroup>
+          <GeometryDrawing Geometry="M80,54 A4,4 0 0 0 88,54 A4,4 0 0 0 80,54">
+            <GeometryDrawing.Brush>
+              <SolidColorBrush Color="{Binding Color01, RelativeSource={RelativeSource AncestorType=uc:AnimatedGeometryUC}}" />
+            </GeometryDrawing.Brush>
+          </GeometryDrawing>
+          <GeometryDrawing Geometry="M09,28 A5,5 0 0 0 19,28 A5,5 0 0 0 09,28">
+            <GeometryDrawing.Brush>
+              <SolidColorBrush Color="{Binding Color02, RelativeSource={RelativeSource AncestorType=uc:AnimatedGeometryUC}}" />
+            </GeometryDrawing.Brush>
+          </GeometryDrawing>
+          <GeometryDrawing Geometry="M56,04 A7,7 0 0 0 70,04 A7,7 0 0 0 56,04">
+            <GeometryDrawing.Brush>
+              <SolidColorBrush Color="{Binding Color03, RelativeSource={RelativeSource AncestorType=uc:AnimatedGeometryUC}}" />
+            </GeometryDrawing.Brush>
+          </GeometryDrawing>
+        </DrawingGroup>
+      </DrawingImage>
+    </Image.Source>
+  </Image>
+</UserControl>
