@@ -37,6 +37,4 @@ public partial class AnimatedGeometryUC : UserControl
 		get => GetValue(Color03Property);
 		set => SetValue(Color03Property!, value);
 	}
-
-
 }
