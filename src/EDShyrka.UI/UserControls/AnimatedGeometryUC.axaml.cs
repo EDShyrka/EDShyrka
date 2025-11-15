@@ -1,40 +1,62 @@
-using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Interactivity;
 using Avalonia.Media;
+using Avalonia.Threading;
+using System;
 
 namespace UserControls;
 
 public partial class AnimatedGeometryUC : UserControl
 {
-    public AnimatedGeometryUC()
-    {
-        InitializeComponent();
+	private DispatcherTimer _timer;
+	private int _iteration = 0;
+	private Color[] _colors01 = { Colors.Red, Colors.Green, Colors.Blue };
+	private Color[] _colors02 = { Colors.Blue, Colors.Red, Colors.Green };
+	private Color[] _colors03 = { Colors.Green, Colors.Blue, Colors.Red };
+
+	public AnimatedGeometryUC()
+	{
+		InitializeComponent();
 	}
 
-	public static readonly StyledProperty<Color> Color01Property =
-	AvaloniaProperty.Register<AnimatedGeometryUC, Color>(nameof(Color01), Colors.Azure);
-
-	public Color Color01
+	protected override void OnLoaded(RoutedEventArgs e)
 	{
-		get => GetValue(Color01Property);
-		set => SetValue(Color01Property!, value);
+		base.OnLoaded(e);
+		StartAnimation();
 	}
 
-	public static readonly StyledProperty<Color> Color02Property =
-		AvaloniaProperty.Register<AnimatedGeometryUC, Color>(nameof(Color02), Colors.Azure);
-
-	public Color Color02
+	protected override void OnUnloaded(RoutedEventArgs e)
 	{
-		get => GetValue(Color02Property);
-		set => SetValue(Color02Property!, value);
+		base.OnUnloaded(e);
+		_timer.Stop();
 	}
 
-	public static readonly StyledProperty<Color> Color03Property =
-		AvaloniaProperty.Register<AnimatedGeometryUC, Color>(nameof(Color03), Colors.Azure);
-
-	public Color Color03
+	private void StartAnimation()
 	{
-		get => GetValue(Color03Property);
-		set => SetValue(Color03Property!, value);
+		var timerInterval = TimeSpan.FromMilliseconds(100);
+		_timer = new DispatcherTimer(timerInterval, DispatcherPriority.Render, ProcessAnimation);
+		_timer.Start();
+	}
+
+	private void ProcessAnimation(object? sender, EventArgs e)
+	{
+		GetResource<SolidColorBrush>("Brush01").Color = _colors01[_iteration];
+		GetResource<SolidColorBrush>("Brush02").Color = _colors02[_iteration];
+		GetResource<SolidColorBrush>("Brush03").Color = _colors03[_iteration];
+
+		_iteration = (_iteration + 1) % 3;
+	}
+
+	private T GetResource<T>(string name)
+	{
+		if (Resources.TryGetValue(name, out var resource) == false)
+		{
+			throw new ArgumentException($"Resource '{name}' not found.", nameof(name));
+		}
+		if (resource is not T)
+		{
+			throw new InvalidCastException($"Resource '{name}' is not of type '{typeof(T).FullName}'.");
+		}
+		return (T)resource!;
 	}
 }

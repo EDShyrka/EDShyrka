@@ -5,64 +5,22 @@
              xmlns:uc="clr-namespace:UserControls"
              mc:Ignorable="d" d:DesignWidth="80" d:DesignHeight="64"
              x:Class="UserControls.AnimatedGeometryUC">
-  <uc:AnimatedGeometryUC.Styles>
-    <Style Selector="uc|AnimatedGeometryUC">
-      <Style.Animations>
-        <Animation Duration="00:00:01" IterationCount="INFINITE">
-          <KeyFrame Cue="0%">
-            <Setter Property="Color01" Value="Red" />
-            <Setter Property="Color02" Value="Green" />
-            <Setter Property="Color03" Value="Blue" />
-          </KeyFrame>
-          <KeyFrame Cue="33%">
-            <Setter Property="Color01" Value="Red" />
-            <Setter Property="Color02" Value="Green" />
-            <Setter Property="Color03" Value="Blue" />
-          </KeyFrame>
-          <KeyFrame Cue="34%">
-            <Setter Property="Color01" Value="Blue" />
-            <Setter Property="Color02" Value="Red" />
-            <Setter Property="Color03" Value="Green" />
-          </KeyFrame>
-          <KeyFrame Cue="66%">
-            <Setter Property="Color01" Value="Blue" />
-            <Setter Property="Color02" Value="Red" />
-            <Setter Property="Color03" Value="Green" />
-          </KeyFrame>
-          <KeyFrame Cue="67%">
-            <Setter Property="Color01" Value="Green" />
-            <Setter Property="Color02" Value="Blue" />
-            <Setter Property="Color03" Value="Red" />
-          </KeyFrame>
-          <KeyFrame Cue="100%">
-            <Setter Property="Color01" Value="Green" />
-            <Setter Property="Color02" Value="Blue" />
-            <Setter Property="Color03" Value="Red" />
-          </KeyFrame>
-        </Animation>
-      </Style.Animations>
-    </Style>
-  </uc:AnimatedGeometryUC.Styles>
-
+  <uc:AnimatedGeometryUC.Resources>
+    <SolidColorBrush x:Key="Brush01" Color="Red" />
+    <SolidColorBrush x:Key="Brush02" Color="Green" />
+    <SolidColorBrush x:Key="Brush03" Color="Blue" />
+  </uc:AnimatedGeometryUC.Resources>
+  
   <Image Stretch="Uniform">
     <Image.Source>
       <DrawingImage>
         <DrawingGroup>
-          <GeometryDrawing Geometry="M80,54 A4,4 0 0 0 88,54 A4,4 0 0 0 80,54">
-            <GeometryDrawing.Brush>
-              <SolidColorBrush Color="{Binding Color01, RelativeSource={RelativeSource AncestorType=uc:AnimatedGeometryUC}}" />
-            </GeometryDrawing.Brush>
-          </GeometryDrawing>
-          <GeometryDrawing Geometry="M09,28 A5,5 0 0 0 19,28 A5,5 0 0 0 09,28">
-            <GeometryDrawing.Brush>
-              <SolidColorBrush Color="{Binding Color02, RelativeSource={RelativeSource AncestorType=uc:AnimatedGeometryUC}}" />
-            </GeometryDrawing.Brush>
-          </GeometryDrawing>
-          <GeometryDrawing Geometry="M56,04 A7,7 0 0 0 70,04 A7,7 0 0 0 56,04">
-            <GeometryDrawing.Brush>
-              <SolidColorBrush Color="{Binding Color03, RelativeSource={RelativeSource AncestorType=uc:AnimatedGeometryUC}}" />
-            </GeometryDrawing.Brush>
-          </GeometryDrawing>
+          <GeometryDrawing Brush="{StaticResource Brush01}"
+                           Geometry="M80,54 A4,4 0 0 0 88,54 A4,4 0 0 0 80,54" />
+          <GeometryDrawing Brush="{StaticResource Brush02}"
+                           Geometry="M09,28 A5,5 0 0 0 19,28 A5,5 0 0 0 09,28" />
+          <GeometryDrawing Brush="{StaticResource Brush03}"
+                           Geometry="M56,04 A7,7 0 0 0 70,04 A7,7 0 0 0 56,04" />
         </DrawingGroup>
       </DrawingImage>
     </Image.Source>
