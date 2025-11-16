@@ -1,0 +1,191 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:ext="clr-namespace:EDShyrka.UI.Avalonia.Extensions">
+  <ext:FramedAnimation x:Key="ShyrkaLogoAnimation" Interval="00:00:00.130">
+    <ext:Frame>
+      <!--01-->
+      <ext:Setter Target="{StaticResource ShyrkaSegment01Brush}" Property="Color" Value="#FFFAA8BA" />
+      <ext:Setter Target="{StaticResource ShyrkaSegment03Brush}" Property="Color" Value="#FFD3989E" />
+      <ext:Setter Target="{StaticResource ShyrkaSegment04Brush}" Property="Color" Value="#FFD3989E" />
+      <ext:Setter Target="{StaticResource ShyrkaSegment05Brush}" Property="Color" Value="#FF0D79C3" />
+      <ext:Setter Target="{StaticResource ShyrkaSegment06Brush}" Property="Color" Value="#FF6AA489" />
+      <ext:Setter Target="{StaticResource ShyrkaSegment07Brush}" Property="Color" Value="#FF71C7EF" />
+      <ext:Setter Target="{StaticResource ShyrkaSegment08Brush}" Property="Color" Value="#FFF8CD6D" />
+      <ext:Setter Target="{StaticResource ShyrkaSegment09Brush}" Property="Color" Value="#FFAE7740" />
+      <ext:Setter Target="{StaticResource ShyrkaSegment10Brush}" Property="Color" Value="#FFF8AA58" />
+      <ext:Setter Target="{StaticResource ShyrkaSegment11Brush}" Property="Color" Value="#FF6EBAE5" />
+    </ext:Frame>
+    <ext:Frame>
+      <!--02-->
+      <ext:Setter Target="{StaticResource ShyrkaSegment03Brush}" Property="Color" Value="#FFFAA8BA" />
+      <ext:Setter Target="{StaticResource ShyrkaSegment04Brush}" Property="Color" Value="#FFFBF4AC" />
+      <ext:Setter Target="{StaticResource ShyrkaSegment06Brush}" Property="Color" Value="#FF1394A9" />
+      <ext:Setter Target="{StaticResource ShyrkaSegment07Brush}" Property="Color" Value="#FF8FD7F5" />
+      <ext:Setter Target="{StaticResource ShyrkaSegment08Brush}" Property="Color" Value="#FFF0D8A5" />
+      <ext:Setter Target="{StaticResource ShyrkaSegment09Brush}" Property="Color" Value="#FFAF6C13" />
+      <ext:Setter Target="{StaticResource ShyrkaSegment10Brush}" Property="Color" Value="#FFFBC53D" />
+      <ext:Setter Target="{StaticResource ShyrkaSegment11Brush}" Property="Color" Value="#FF8EC8E6" />
+    </ext:Frame>
+    <ext:Frame>
+      <!--03-->
+      <ext:Setter Target="{StaticResource ShyrkaSegment01Brush}" Property="Color" Value="#FF4A1B08" />
+      <ext:Setter Target="{StaticResource ShyrkaSegment03Brush}" Property="Color" Value="#FF92E7FC" />
+      <ext:Setter Target="{StaticResource ShyrkaSegment04Brush}" Property="Color" Value="#FF1394A9" />
+      <ext:Setter Target="{StaticResource ShyrkaSegment07Brush}" Property="Color" Value="#FF0D79C3" />
+      <ext:Setter Target="{StaticResource ShyrkaSegment08Brush}" Property="Color" Value="#FFFBC53D" />
+      <ext:Setter Target="{StaticResource ShyrkaSegment09Brush}" Property="Color" Value="#FFFBC53D" />
+      <ext:Setter Target="{StaticResource ShyrkaSegment10Brush}" Property="Color" Value="#FFF7501D" />
+      <ext:Setter Target="{StaticResource ShyrkaSegment11Brush}" Property="Color" Value="#FFECCAA7" />
+    </ext:Frame>
+    <ext:Frame>
+      <!--04-->
+      <ext:Setter Target="{StaticResource ShyrkaSegment01Brush}" Property="Color" Value="#FFFBC53D" />
+      <ext:Setter Target="{StaticResource ShyrkaSegment03Brush}" Property="Color" Value="#FF4A1B08" />
+      <ext:Setter Target="{StaticResource ShyrkaSegment05Brush}" Property="Color" Value="#FFEBE7E5" />
+      <ext:Setter Target="{StaticResource ShyrkaSegment06Brush}" Property="Color" Value="#FFF8DD7D" />
+      <ext:Setter Target="{StaticResource ShyrkaSegment07Brush}" Property="Color" Value="#FFE8DAEF" />
+      <ext:Setter Target="{StaticResource ShyrkaSegment08Brush}" Property="Color" Value="#FFF99808" />
+      <ext:Setter Target="{StaticResource ShyrkaSegment09Brush}" Property="Color" Value="#FFCCCBE0" />
+      <ext:Setter Target="{StaticResource ShyrkaSegment10Brush}" Property="Color" Value="#FFFBB92E" />
+      <ext:Setter Target="{StaticResource ShyrkaSegment11Brush}" Property="Color" Value="#FF044BB0" />
+    </ext:Frame>
+    <ext:Frame>
+      <!--05-->
+      <ext:Setter Target="{StaticResource ShyrkaSegment01Brush}" Property="Color" Value="#FFFAA8BA" />
+      <ext:Setter Target="{StaticResource ShyrkaSegment05Brush}" Property="Color" Value="#FF0769C1" />
+      <ext:Setter Target="{StaticResource ShyrkaSegment06Brush}" Property="Color" Value="#FFF8DD7D" />
+      <ext:Setter Target="{StaticResource ShyrkaSegment07Brush}" Property="Color" Value="#FF0769C1" />
+      <ext:Setter Target="{StaticResource ShyrkaSegment10Brush}" Property="Color" Value="#FFF7501D" />
+    </ext:Frame>
+    <ext:Frame>
+      <!--06-->
+      <ext:Setter Target="{StaticResource ShyrkaSegment01Brush}" Property="Color" Value="#FFD29725" />
+      <ext:Setter Target="{StaticResource ShyrkaSegment03Brush}" Property="Color" Value="#FF51562E" />
+      <ext:Setter Target="{StaticResource ShyrkaSegment05Brush}" Property="Color" Value="#FF8EC8E6" />
+      <ext:Setter Target="{StaticResource ShyrkaSegment06Brush}" Property="Color" Value="#FFB0C7A6" />
+      <ext:Setter Target="{StaticResource ShyrkaSegment07Brush}" Property="Color" Value="#FF8DBAD9" />
+      <ext:Setter Target="{StaticResource ShyrkaSegment09Brush}" Property="Color" Value="#FFD0C8B1" />
+      <ext:Setter Target="{StaticResource ShyrkaSegment10Brush}" Property="Color" Value="#FFF7A60E" />
+      <ext:Setter Target="{StaticResource ShyrkaSegment11Brush}" Property="Color" Value="#FF486D8A" />
+    </ext:Frame>
+    <ext:Frame>
+      <!--07-->
+      <ext:Setter Target="{StaticResource ShyrkaSegment01Brush}" Property="Color" Value="#FFFBC53D" />
+      <ext:Setter Target="{StaticResource ShyrkaSegment03Brush}" Property="Color" Value="#FF4A1B08" />
+      <ext:Setter Target="{StaticResource ShyrkaSegment05Brush}" Property="Color" Value="#FFEBE7E5" />
+      <ext:Setter Target="{StaticResource ShyrkaSegment06Brush}" Property="Color" Value="#FFF8DD7D" />
+      <ext:Setter Target="{StaticResource ShyrkaSegment07Brush}" Property="Color" Value="#FFEBE7E5" />
+      <ext:Setter Target="{StaticResource ShyrkaSegment08Brush}" Property="Color" Value="#FFF78A05" />
+      <ext:Setter Target="{StaticResource ShyrkaSegment09Brush}" Property="Color" Value="#FFD0C8B1" />
+      <ext:Setter Target="{StaticResource ShyrkaSegment10Brush}" Property="Color" Value="#FFFABA54" />
+      <ext:Setter Target="{StaticResource ShyrkaSegment11Brush}" Property="Color" Value="#FF044BB0" />
+    </ext:Frame>
+    <ext:Frame>
+      <!--08-->
+      <ext:Setter Target="{StaticResource ShyrkaSegment01Brush}" Property="Color" Value="#FFFAA8BA" />
+      <ext:Setter Target="{StaticResource ShyrkaSegment03Brush}" Property="Color" Value="#FFFAA8BA" />
+      <ext:Setter Target="{StaticResource ShyrkaSegment04Brush}" Property="Color" Value="#FFF8DD7D" />
+      <ext:Setter Target="{StaticResource ShyrkaSegment06Brush}" Property="Color" Value="#FF1387A8" />
+      <ext:Setter Target="{StaticResource ShyrkaSegment07Brush}" Property="Color" Value="#FF73D6FA" />
+      <ext:Setter Target="{StaticResource ShyrkaSegment08Brush}" Property="Color" Value="#FFECCAA7" />
+      <ext:Setter Target="{StaticResource ShyrkaSegment09Brush}" Property="Color" Value="#FFAC5F0A" />
+      <ext:Setter Target="{StaticResource ShyrkaSegment11Brush}" Property="Color" Value="#FF71C7EF" />
+    </ext:Frame>
+    <ext:Frame>
+      <!--09-->
+      <ext:Setter Target="{StaticResource ShyrkaSegment03Brush}" Property="Color" Value="#FF4A1B08" />
+      <ext:Setter Target="{StaticResource ShyrkaSegment04Brush}" Property="Color" Value="#FF1394A9" />
+      <ext:Setter Target="{StaticResource ShyrkaSegment06Brush}" Property="Color" Value="#FFF8CD6D" />
+      <ext:Setter Target="{StaticResource ShyrkaSegment07Brush}" Property="Color" Value="#FF0769C1" />
+      <ext:Setter Target="{StaticResource ShyrkaSegment08Brush}" Property="Color" Value="#FFF99808" />
+      <ext:Setter Target="{StaticResource ShyrkaSegment09Brush}" Property="Color" Value="#FFD0C8B1" />
+      <ext:Setter Target="{StaticResource ShyrkaSegment10Brush}" Property="Color" Value="#FFF7501D" />
+      <ext:Setter Target="{StaticResource ShyrkaSegment11Brush}" Property="Color" Value="#FF044BB0" />
+    </ext:Frame>
+    <ext:Frame>
+      <!--10-->
+      <ext:Setter Target="{StaticResource ShyrkaSegment01Brush}" Property="Color" Value="#FFF68793" />
+    </ext:Frame>
+    <ext:Frame>
+      <!--11-->
+      <ext:Setter Target="{StaticResource ShyrkaSegment01Brush}" Property="Color" Value="#FFB3432C" />
+      <ext:Setter Target="{StaticResource ShyrkaSegment06Brush}" Property="Color" Value="#FF7BB67C" />
+      <ext:Setter Target="{StaticResource ShyrkaSegment09Brush}" Property="Color" Value="#FF94A770" />
+    </ext:Frame>
+    <ext:Frame>
+      <!--12-->
+      <ext:Setter Target="{StaticResource ShyrkaSegment01Brush}" Property="Color" Value="#FF4A1B08" />
+      <ext:Setter Target="{StaticResource ShyrkaSegment06Brush}" Property="Color" Value="#FF147871" />
+      <ext:Setter Target="{StaticResource ShyrkaSegment09Brush}" Property="Color" Value="#FFAC5115" />
+    </ext:Frame>
+    <ext:Frame>
+      <!--13-->
+      <ext:Setter Target="{StaticResource ShyrkaSegment01Brush}" Property="Color" Value="#FFFBB92E" />
+      <ext:Setter Target="{StaticResource ShyrkaSegment05Brush}" Property="Color" Value="#FFEBE7E5" />
+      <ext:Setter Target="{StaticResource ShyrkaSegment06Brush}" Property="Color" Value="#FFF8DD7D" />
+      <ext:Setter Target="{StaticResource ShyrkaSegment07Brush}" Property="Color" Value="#FFE8DAEF" />
+      <ext:Setter Target="{StaticResource ShyrkaSegment09Brush}" Property="Color" Value="#FFD0C8B1" />
+      <ext:Setter Target="{StaticResource ShyrkaSegment10Brush}" Property="Color" Value="#FFFABA54" />
+    </ext:Frame>
+    <ext:Frame>
+      <!--14-->
+      <ext:Setter Target="{StaticResource ShyrkaSegment01Brush}" Property="Color" Value="#FF4A1B08" />
+      <ext:Setter Target="{StaticResource ShyrkaSegment03Brush}" Property="Color" Value="#FF94C5A8" />
+      <ext:Setter Target="{StaticResource ShyrkaSegment05Brush}" Property="Color" Value="#FF0D79C3" />
+      <ext:Setter Target="{StaticResource ShyrkaSegment06Brush}" Property="Color" Value="#FF1387A8" />
+      <ext:Setter Target="{StaticResource ShyrkaSegment07Brush}" Property="Color" Value="#FF0D79C3" />
+      <ext:Setter Target="{StaticResource ShyrkaSegment08Brush}" Property="Color" Value="#FFFBC53D" />
+      <ext:Setter Target="{StaticResource ShyrkaSegment09Brush}" Property="Color" Value="#FFF8CD6D" />
+      <ext:Setter Target="{StaticResource ShyrkaSegment10Brush}" Property="Color" Value="#FFF7501D" />
+      <ext:Setter Target="{StaticResource ShyrkaSegment11Brush}" Property="Color" Value="#FFECCAA7" />
+    </ext:Frame>
+    <ext:Frame>
+      <!--15-->
+      <ext:Setter Target="{StaticResource ShyrkaSegment01Brush}" Property="Color" Value="#FFFBB92E" />
+      <ext:Setter Target="{StaticResource ShyrkaSegment03Brush}" Property="Color" Value="#FF4A1B08" />
+      <ext:Setter Target="{StaticResource ShyrkaSegment05Brush}" Property="Color" Value="#FFF0D8A5" />
+      <ext:Setter Target="{StaticResource ShyrkaSegment06Brush}" Property="Color" Value="#FFF8DD7D" />
+      <ext:Setter Target="{StaticResource ShyrkaSegment07Brush}" Property="Color" Value="#FFE8DAEF" />
+      <ext:Setter Target="{StaticResource ShyrkaSegment08Brush}" Property="Color" Value="#FFF7A60E" />
+      <ext:Setter Target="{StaticResource ShyrkaSegment09Brush}" Property="Color" Value="#FFD0C8B1" />
+      <ext:Setter Target="{StaticResource ShyrkaSegment10Brush}" Property="Color" Value="#FFFBC53D" />
+      <ext:Setter Target="{StaticResource ShyrkaSegment11Brush}" Property="Color" Value="#FF044BB0" />
+    </ext:Frame>
+    <ext:Frame>
+      <!--16-->
+      <ext:Setter Target="{StaticResource ShyrkaSegment01Brush}" Property="Color" Value="#FFF79AA7" />
+      <ext:Setter Target="{StaticResource ShyrkaSegment03Brush}" Property="Color" Value="#FFFAA8BA" />
+      <ext:Setter Target="{StaticResource ShyrkaSegment04Brush}" Property="Color" Value="#FFF8DD7D" />
+      <ext:Setter Target="{StaticResource ShyrkaSegment05Brush}" Property="Color" Value="#FF0D79C3" />
+      <ext:Setter Target="{StaticResource ShyrkaSegment06Brush}" Property="Color" Value="#FF147871" />
+      <ext:Setter Target="{StaticResource ShyrkaSegment07Brush}" Property="Color" Value="#FF71C7EF" />
+      <ext:Setter Target="{StaticResource ShyrkaSegment08Brush}" Property="Color" Value="#FFF0D8A5" />
+      <ext:Setter Target="{StaticResource ShyrkaSegment09Brush}" Property="Color" Value="#FFAF6C13" />
+      <ext:Setter Target="{StaticResource ShyrkaSegment11Brush}" Property="Color" Value="#FF71C7EF" />
+    </ext:Frame>
+    <ext:Frame>
+      <!--17-->
+      <ext:Setter Target="{StaticResource ShyrkaSegment01Brush}" Property="Color" Value="#FFF2B995" />
+      <ext:Setter Target="{StaticResource ShyrkaSegment03Brush}" Property="Color" Value="#FF4A1B08" />
+      <ext:Setter Target="{StaticResource ShyrkaSegment04Brush}" Property="Color" Value="#FF1394A9" />
+      <ext:Setter Target="{StaticResource ShyrkaSegment05Brush}" Property="Color" Value="#FF8EC8E6" />
+      <ext:Setter Target="{StaticResource ShyrkaSegment06Brush}" Property="Color" Value="#FFF8CD6D" />
+      <ext:Setter Target="{StaticResource ShyrkaSegment08Brush}" Property="Color" Value="#FFF99808" />
+      <ext:Setter Target="{StaticResource ShyrkaSegment09Brush}" Property="Color" Value="#FFD0C8B1" />
+      <ext:Setter Target="{StaticResource ShyrkaSegment10Brush}" Property="Color" Value="#FFF9984B" />
+      <ext:Setter Target="{StaticResource ShyrkaSegment11Brush}" Property="Color" Value="#FF044BB0" />
+    </ext:Frame>
+    <ext:Frame>
+      <!--18-->
+      <ext:Setter Target="{StaticResource ShyrkaSegment01Brush}" Property="Color" Value="#FF4A1B08" />
+      <ext:Setter Target="{StaticResource ShyrkaSegment03Brush}" Property="Color" Value="#FF94C5A8" />
+      <ext:Setter Target="{StaticResource ShyrkaSegment05Brush}" Property="Color" Value="#FF0D79C3" />
+      <ext:Setter Target="{StaticResource ShyrkaSegment06Brush}" Property="Color" Value="#FF1387A8" />
+      <ext:Setter Target="{StaticResource ShyrkaSegment07Brush}" Property="Color" Value="#FF0D79C3" />
+      <ext:Setter Target="{StaticResource ShyrkaSegment08Brush}" Property="Color" Value="#FFF8CD6D" />
+      <ext:Setter Target="{StaticResource ShyrkaSegment09Brush}" Property="Color" Value="#FFFABA54" />
+      <ext:Setter Target="{StaticResource ShyrkaSegment10Brush}" Property="Color" Value="#FFF7501D" />
+      <ext:Setter Target="{StaticResource ShyrkaSegment11Brush}" Property="Color" Value="#FFF0D8A5" />
+    </ext:Frame>
+  </ext:FramedAnimation>
+</ResourceDictionary>

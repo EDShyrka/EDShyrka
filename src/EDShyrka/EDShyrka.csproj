@@ -17,8 +17,8 @@
       <IncludeAssets Condition="'$(Configuration)' != 'Debug'">None</IncludeAssets>
       <PrivateAssets Condition="'$(Configuration)' != 'Debug'">All</PrivateAssets>
     </PackageReference>
-	<PackageReference Include="Microsoft.AspNetCore.Hosting" />
-	<PackageReference Include="Microsoft.Extensions.DependencyInjection" />
+    <PackageReference Include="Microsoft.AspNetCore.Hosting" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" />
   </ItemGroup>
 
   <ItemGroup>
@@ -26,7 +26,7 @@
     <ProjectReference Include="..\EDShyrka.Shared\EDShyrka.Shared.csproj" />
     <ProjectReference Include="..\EDShyrka.UI\EDShyrka.UI.csproj" />
   </ItemGroup>
-  
+
   <ItemGroup>
     <None Update="appsettings.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
