@@ -27,9 +27,4 @@
   <ItemGroup>
     <ProjectReference Include="..\EDShyrka.Shared\EDShyrka.Shared.csproj" />
   </ItemGroup>
-
-  <ItemGroup>
-    <Compile Update="UserControls\AnimatedGeometryUC.axaml.cs">
-      <DependentUpon>AnimatedGeometryUC.axaml</DependentUpon>
-    </Compile>
 </Project>
