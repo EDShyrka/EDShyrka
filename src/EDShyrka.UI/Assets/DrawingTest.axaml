@@ -1,0 +1,22 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <Design.PreviewWith>
+    <Border Width="200" Height="200" Background="White">
+      <Image Source="{StaticResource ThreeDots}" Stretch="Uniform"/>
+    </Border>
+  </Design.PreviewWith>
+
+  <SolidColorBrush x:Key="Dot01Brush" Color="#FFFC931E" />
+  <SolidColorBrush x:Key="Dot02Brush" Color="#FF436D64" />
+  <SolidColorBrush x:Key="Dot03Brush" Color="#FFE8484B" />
+  <DrawingImage x:Key="ThreeDots">
+    <DrawingGroup>
+      <GeometryDrawing Brush="{DynamicResource Dot01Brush}"
+                       Geometry="M80,54 A4,4 0 0 0 88,54 A4,4 0 0 0 80,54" />
+      <GeometryDrawing Brush="{DynamicResource Dot02Brush}"
+                       Geometry="M09,28 A5,5 0 0 0 19,28 A5,5 0 0 0 09,28" />
+      <GeometryDrawing Brush="{DynamicResource Dot03Brush}"
+                       Geometry="M56,04 A7,7 0 0 0 70,04 A7,7 0 0 0 56,04" />
+    </DrawingGroup>
+  </DrawingImage>
+</ResourceDictionary>

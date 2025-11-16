@@ -3,26 +3,40 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:uc="clr-namespace:UserControls"
+             xmlns:ext="clr-namespace:EDShyrka.UI.Avalonia.Extensions"
              mc:Ignorable="d" d:DesignWidth="80" d:DesignHeight="64"
              x:Class="UserControls.AnimatedGeometryUC">
   <uc:AnimatedGeometryUC.Resources>
-    <SolidColorBrush x:Key="Brush01" Color="Red" />
-    <SolidColorBrush x:Key="Brush02" Color="Green" />
-    <SolidColorBrush x:Key="Brush03" Color="Blue" />
+    <ResourceDictionary>
+      <ResourceDictionary.MergedDictionaries>
+        <ResourceInclude Source="avares://EDShyrka.UI/Assets/DrawingTest.axaml" />
+      </ResourceDictionary.MergedDictionaries>
+    </ResourceDictionary>
+    
+    <SolidColorBrush x:Key="Dot01Brush" Color="Red" />
+    <SolidColorBrush x:Key="Dot02Brush" Color="Green" />
+    <SolidColorBrush x:Key="Dot03Brush" Color="Blue" />
+
+    <ext:FramedAnimation x:Key="Animation" Interval="00:00:00.333">
+      <ext:Frame>
+        <ext:Setter Target="{StaticResource Dot01Brush}" Property="{x:Static SolidColorBrush.ColorProperty}" Value="Red" />
+        <ext:Setter Target="{StaticResource Dot02Brush}" Property="Color" Value="{x:Static Colors.Green}" />
+        <ext:Setter Target="{StaticResource Dot03Brush}" Property="Color" Value="Blue" />
+      </ext:Frame>
+      <ext:Frame>
+        <ext:Setter Target="{StaticResource Dot01Brush}" Property="{x:Static SolidColorBrush.ColorProperty}" Value="{x:Static Colors.Blue}" />
+        <ext:Setter Target="{StaticResource Dot02Brush}" Property="{x:Static SolidColorBrush.ColorProperty}" Value="{x:Static Colors.Red}" />
+        <ext:Setter Target="{StaticResource Dot03Brush}" Property="{x:Static SolidColorBrush.ColorProperty}" Value="{x:Static Colors.Green}" />
+      </ext:Frame>
+      <ext:Frame>
+        <ext:Setter Target="{StaticResource Dot01Brush}" Property="{x:Static SolidColorBrush.ColorProperty}" Value="{x:Static Colors.Green}" />
+        <ext:Setter Target="{StaticResource Dot02Brush}" Property="{x:Static SolidColorBrush.ColorProperty}" Value="{x:Static Colors.Blue}" />
+        <ext:Setter Target="{StaticResource Dot03Brush}" Property="{x:Static SolidColorBrush.ColorProperty}" Value="{x:Static Colors.Red}" />
+      </ext:Frame>
+    </ext:FramedAnimation>
   </uc:AnimatedGeometryUC.Resources>
-  
-  <Image Stretch="Uniform">
-    <Image.Source>
-      <DrawingImage>
-        <DrawingGroup>
-          <GeometryDrawing Brush="{StaticResource Brush01}"
-                           Geometry="M80,54 A4,4 0 0 0 88,54 A4,4 0 0 0 80,54" />
-          <GeometryDrawing Brush="{StaticResource Brush02}"
-                           Geometry="M09,28 A5,5 0 0 0 19,28 A5,5 0 0 0 09,28" />
-          <GeometryDrawing Brush="{StaticResource Brush03}"
-                           Geometry="M56,04 A7,7 0 0 0 70,04 A7,7 0 0 0 56,04" />
-        </DrawingGroup>
-      </DrawingImage>
-    </Image.Source>
-  </Image>
+
+  <Image Stretch="Uniform"
+         ext:FrameAnimator.Animation="{StaticResource Animation}"
+         Source="{StaticResource ThreeDots}" />
 </UserControl>
