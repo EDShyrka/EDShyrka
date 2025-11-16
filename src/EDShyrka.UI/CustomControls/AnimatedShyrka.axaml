@@ -1,0 +1,32 @@
+<Image xmlns="https://github.com/avaloniaui"
+       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+       mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+       xmlns:ext="clr-namespace:EDShyrka.UI.Avalonia.Extensions"
+       ext:FrameAnimator.Animation="{StaticResource ShyrkaLogoAnimation}"
+       Source="{StaticResource ShyrkaLogo}"
+       Stretch="Uniform"
+       x:Class="EDShyrka.UI.CustomControls.AnimatedShyrka">
+
+  <Image.Resources>
+    <ResourceDictionary>
+      <ResourceDictionary.MergedDictionaries>
+        <ResourceInclude Source="avares://EDShyrka.UI/Assets/ShyrkaLogo.axaml" />
+        <ResourceInclude Source="avares://EDShyrka.UI/Assets/ShyrkaLogoAnimation.axaml" />
+      </ResourceDictionary.MergedDictionaries>
+    </ResourceDictionary>
+
+    <SolidColorBrush x:Key="ShyrkaSegment01Brush" Color="#FFFAA8BA" />
+    <SolidColorBrush x:Key="ShyrkaSegment02Brush" Color="#FFF99808" />
+    <SolidColorBrush x:Key="ShyrkaSegment03Brush" Color="#FFD3989E" />
+    <SolidColorBrush x:Key="ShyrkaSegment04Brush" Color="#FFD3989E" />
+    <SolidColorBrush x:Key="ShyrkaSegment05Brush" Color="#FF0D79C3" />
+    <SolidColorBrush x:Key="ShyrkaSegment06Brush" Color="#FF6AA489" />
+    <SolidColorBrush x:Key="ShyrkaSegment07Brush" Color="#FF71C7EF" />
+    <SolidColorBrush x:Key="ShyrkaSegment08Brush" Color="#FFF8CD6D" />
+    <SolidColorBrush x:Key="ShyrkaSegment09Brush" Color="#FFAE7740" />
+    <SolidColorBrush x:Key="ShyrkaSegment10Brush" Color="#FFF8AA58" />
+    <SolidColorBrush x:Key="ShyrkaSegment11Brush" Color="#FF6EBAE5" />
+  </Image.Resources>
+</Image>
