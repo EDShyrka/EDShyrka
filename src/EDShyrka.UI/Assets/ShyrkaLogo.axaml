@@ -23,17 +23,17 @@
   <Color x:Key="ShyrkaPurpleColor">#FFB201FF</Color>
   <Color x:Key="ShyrkaDarkPurpleColor">#600090</Color>
 
-  <Color x:Key="ShyrkaSegment01Color">#FFFC931E</Color>
-  <Color x:Key="ShyrkaSegment02Color">#FF436D64</Color>
-  <Color x:Key="ShyrkaSegment03Color">#FFE8484B</Color>
-  <Color x:Key="ShyrkaSegment04Color">#FFFC971E</Color>
-  <Color x:Key="ShyrkaSegment05Color">#FFD62746</Color>
-  <Color x:Key="ShyrkaSegment06Color">#FFE8484B</Color>
-  <Color x:Key="ShyrkaSegment07Color">#FFB201FF</Color>
-  <Color x:Key="ShyrkaSegment08Color">#FF0B618D</Color>
-  <Color x:Key="ShyrkaSegment09Color">#FF155977</Color>
-  <Color x:Key="ShyrkaSegment10Color">#FF1B835E</Color>
-  <Color x:Key="ShyrkaSegment11Color">#FF7FFDE4</Color>
+  <SolidColorBrush x:Key="ShyrkaSegment01Brush" Color="#FFFC931E" />
+  <SolidColorBrush x:Key="ShyrkaSegment02Brush" Color="#FF436D64" />
+  <SolidColorBrush x:Key="ShyrkaSegment03Brush" Color="#FFE8484B" />
+  <SolidColorBrush x:Key="ShyrkaSegment04Brush" Color="#FFFC971E" />
+  <SolidColorBrush x:Key="ShyrkaSegment05Brush" Color="#FFD62746" />
+  <SolidColorBrush x:Key="ShyrkaSegment06Brush" Color="#FFE8484B" />
+  <SolidColorBrush x:Key="ShyrkaSegment07Brush" Color="#FFB201FF" />
+  <SolidColorBrush x:Key="ShyrkaSegment08Brush" Color="#FF0B618D" />
+  <SolidColorBrush x:Key="ShyrkaSegment09Brush" Color="#FF155977" />
+  <SolidColorBrush x:Key="ShyrkaSegment10Brush" Color="#FF1B835E" />
+  <SolidColorBrush x:Key="ShyrkaSegment11Brush" Color="#FF7FFDE4" />
   <Pen x:Key="ShyrkaConstellationPen" Brush="{StaticResource ShyrkaLightBlueColor}" />
   <DrawingImage x:Key="ShyrkaLogo">
     <DrawingGroup>
@@ -77,17 +77,17 @@
       <GeometryDrawing Brush="{StaticResource ShyrkaLightBlueColor}" Geometry="M968,261C982,279 993,298 1003,319 1014,345 1023,372 1031,400 1010,417 989,433 968,450 966,445 966,441 966,436 983,423 1001,410 1019,398 1008,353 991,312 967,274 951,286 935,297 919,308 917,305 916,303 914,301 932,287 950,274 968,261z" />
       <GeometryDrawing Brush="{StaticResource ShyrkaOrangeColor}" Geometry="M964,307C966,308 968,309 969,311 980,332 990,354 997,377 988,384 978,391 968,398 961,373 952,349 939,326 948,320 956,314 964,307z" />
       <!-- segments -->
-      <GeometryDrawing Brush="{DynamicResource ShyrkaSegment01Color}" Geometry="M654,260C684,258 714,261 744,269 750,270 755,272 760,274 751,291 742,307 734,324 733,326 731,327 730,328 700,319 671,317 641,321 638,301 637,282 636,262 642,262 648,261 654,260z" />
-      <GeometryDrawing Brush="{DynamicResource ShyrkaSegment02Color}" Geometry="M613,267C614,267 615,267 616,267 617,286 618,305 620,324 587,332 557,346 530,366 519,352 507,339 496,325 531,297 570,278 613,267z" />
-      <GeometryDrawing Brush="{DynamicResource ShyrkaSegment03Color}" Geometry="M478,339C480,339 481,340 482,341 492,354 502,367 513,380 486,402 466,430 453,463 437,459 422,455 406,451 403,450 400,449 398,447 417,405 443,369 478,339z" />
-      <GeometryDrawing Brush="{DynamicResource ShyrkaSegment04Color}" Geometry="M390,468C408,473 425,478 443,483 443,484 444,484 444,485 435,515 433,546 437,578 418,583 398,588 379,594 371,551 375,509 390,468z" />
-      <GeometryDrawing Brush="{DynamicResource ShyrkaSegment05Color}" Geometry="M438,598C440,598 441,598 443,599 452,630 468,656 492,678 477,692 463,706 449,721 416,693 394,657 383,616 385,613 388,612 391,612 407,607 423,603 438,598z" />
-      <GeometryDrawing Brush="{DynamicResource ShyrkaSegment06Color}" Geometry="M508,690C535,708 564,718 596,721 593,740 589,760 585,779 541,774 501,759 465,734 480,719 494,705 508,690z" />
-      <GeometryDrawing Brush="{DynamicResource ShyrkaSegment07Color}" Geometry="M713,702C714,702 715,702 716,703 724,719 731,736 738,752 696,772 651,781 605,779 609,760 613,742 616,723 650,723 682,716 713,702z" />
-      <GeometryDrawing Brush="{DynamicResource ShyrkaSegment08Color}" Geometry="M812,621C829,629 846,638 863,647 835,687 799,719 757,743 748,726 740,710 733,693 764,674 791,650 812,621z" />
-      <GeometryDrawing Brush="{DynamicResource ShyrkaSegment09Color}" Geometry="M912,507C913,508 914,509 914,511 909,552 897,591 877,627 876,628 875,628 875,629 857,621 840,612 824,603 839,575 849,545 853,513 872,511 892,509 912 507z" />
-      <GeometryDrawing Brush="{DynamicResource ShyrkaSegment10Color}" Geometry="M879,370C880,370 881,370 882,371 903,407 914,445 914,487 893,489 873,491 852,493 852,462 844,434 829,407 846,395 862,382 879,370z" />
-      <GeometryDrawing Brush="{DynamicResource ShyrkaSegment11Color}" Geometry="M779,281C815,297 846,321 870,353 853,364 835,377 818,389 799,367 776,349 750,336 760,318 770,299 779,281z" />
+      <GeometryDrawing Brush="{DynamicResource ShyrkaSegment01Brush}" Geometry="M654,260C684,258 714,261 744,269 750,270 755,272 760,274 751,291 742,307 734,324 733,326 731,327 730,328 700,319 671,317 641,321 638,301 637,282 636,262 642,262 648,261 654,260z" />
+      <GeometryDrawing Brush="{DynamicResource ShyrkaSegment02Brush}" Geometry="M613,267C614,267 615,267 616,267 617,286 618,305 620,324 587,332 557,346 530,366 519,352 507,339 496,325 531,297 570,278 613,267z" />
+      <GeometryDrawing Brush="{DynamicResource ShyrkaSegment03Brush}" Geometry="M478,339C480,339 481,340 482,341 492,354 502,367 513,380 486,402 466,430 453,463 437,459 422,455 406,451 403,450 400,449 398,447 417,405 443,369 478,339z" />
+      <GeometryDrawing Brush="{DynamicResource ShyrkaSegment04Brush}" Geometry="M390,468C408,473 425,478 443,483 443,484 444,484 444,485 435,515 433,546 437,578 418,583 398,588 379,594 371,551 375,509 390,468z" />
+      <GeometryDrawing Brush="{DynamicResource ShyrkaSegment05Brush}" Geometry="M438,598C440,598 441,598 443,599 452,630 468,656 492,678 477,692 463,706 449,721 416,693 394,657 383,616 385,613 388,612 391,612 407,607 423,603 438,598z" />
+      <GeometryDrawing Brush="{DynamicResource ShyrkaSegment06Brush}" Geometry="M508,690C535,708 564,718 596,721 593,740 589,760 585,779 541,774 501,759 465,734 480,719 494,705 508,690z" />
+      <GeometryDrawing Brush="{DynamicResource ShyrkaSegment07Brush}" Geometry="M713,702C714,702 715,702 716,703 724,719 731,736 738,752 696,772 651,781 605,779 609,760 613,742 616,723 650,723 682,716 713,702z" />
+      <GeometryDrawing Brush="{DynamicResource ShyrkaSegment08Brush}" Geometry="M812,621C829,629 846,638 863,647 835,687 799,719 757,743 748,726 740,710 733,693 764,674 791,650 812,621z" />
+      <GeometryDrawing Brush="{DynamicResource ShyrkaSegment09Brush}" Geometry="M912,507C913,508 914,509 914,511 909,552 897,591 877,627 876,628 875,628 875,629 857,621 840,612 824,603 839,575 849,545 853,513 872,511 892,509 912 507z" />
+      <GeometryDrawing Brush="{DynamicResource ShyrkaSegment10Brush}" Geometry="M879,370C880,370 881,370 882,371 903,407 914,445 914,487 893,489 873,491 852,493 852,462 844,434 829,407 846,395 862,382 879,370z" />
+      <GeometryDrawing Brush="{DynamicResource ShyrkaSegment11Brush}" Geometry="M779,281C815,297 846,321 870,353 853,364 835,377 818,389 799,367 776,349 750,336 760,318 770,299 779,281z" />
       <!-- stars -->
       <GeometryDrawing Geometry="M667,386L591,445 537,507 528,577 484,594 514,668 563,644 528,577" Pen="{StaticResource ShyrkaConstellationPen}" />
       <GeometryDrawing Brush="{DynamicResource ShyrkaPoleStarColor}" Geometry="M673,330C675,342 675,366 678,368 681,369 697,361 703,356 699,363 687,374 688,378 689,382 708,385 715,388 690,391 688,390 687,393 686,395 697,412 697,413 679,404 679,402 675,404 671,406 664,432 661,441 660,430 662,406 659,404 655,402 639,411 638,411 648,395 650,395 649,391 648,388 619,384 618,383 628,382 649,382 651,378 653,374 643,357 644,357 658,364 661,369 663,366 666,364 671,342 673,330L673,330 673,330z" />
