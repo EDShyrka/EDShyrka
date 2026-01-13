@@ -12,7 +12,7 @@
     <Setter Property="Padding" Value="4"/>
     <Setter Property="BorderBrush" Value="{Binding OffBorderBrush, RelativeSource={RelativeSource Self}}"/>
     <Setter Property="Background" Value="{Binding OffBackground, RelativeSource={RelativeSource Self}}"/>
-    <Setter Property="Content" Value="{Binding OffText, RelativeSource={RelativeSource Self}}"/>
+    <Setter Property="Content" Value="{Binding OffContent, RelativeSource={RelativeSource Self}}"/>
     <Setter Property="Template">
       <ControlTemplate>
         <Border x:Name="PART_Track"
@@ -60,7 +60,7 @@
     </Style>
 
     <Style Selector="^:checked /template/ ContentPresenter#PART_ContentPresenter">
-      <Setter Property="Content" Value="{Binding OnText, RelativeSource={RelativeSource AncestorType=ctrl:ToggleSwitch}}" />
+      <Setter Property="Content" Value="{Binding OnContent, RelativeSource={RelativeSource AncestorType=ctrl:ToggleSwitch}}" />
     </Style>
 
     <Style Selector="^:checked /template/ Ellipse#PART_Thumb">

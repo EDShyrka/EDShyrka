@@ -105,29 +105,29 @@ public class ToggleSwitch : Button
 	public IBrush? OffBackground { get => GetValue(OffBackgroundProperty); set => SetValue(OffBackgroundProperty, value); }
 	#endregion OffBackground dependency property
 
-	#region OnText dependency property
+	#region OnContent dependency property
 	/// <summary>
-	/// Identifies the OnText dependency property.
+	/// Identifies the OnContent dependency property.
 	/// </summary>
-	public static readonly StyledProperty<string?> OnTextProperty = AvaloniaProperty.Register<ToggleSwitch, string?>(nameof(OnText), "ON");
+	public static readonly StyledProperty<object?> OnContentProperty = AvaloniaProperty.Register<ToggleSwitch, object?>(nameof(OnContent), "ON");
 
 	/// <summary>
-	/// Gets or sets the text when the toggle switch is in the 'on' state.
+	/// Gets or sets the content when the toggle switch is in the 'on' state.
 	/// </summary>
-	public string? OnText { get => GetValue(OnTextProperty); set => SetValue(OnTextProperty, value); }
-	#endregion OnText dependency property
+	public object? OnContent { get => GetValue(OnContentProperty); set => SetValue(OnContentProperty, value); }
+	#endregion OnContent dependency property
 
-	#region OffText dependency property
+	#region OffContent dependency property
 	/// <summary>
-	/// Identifies the OffText dependency property.
+	/// Identifies the OffContent dependency property.
 	/// </summary>
-	public static readonly StyledProperty<string?> OffTextProperty = AvaloniaProperty.Register<ToggleSwitch, string?>(nameof(OffText), "OFF");
+	public static readonly StyledProperty<object?> OffContentProperty = AvaloniaProperty.Register<ToggleSwitch, object?>(nameof(OffContent), "OFF");
 
 	/// <summary>
-	/// Gets or sets the text when the toggle switch is in the 'off' state.
+	/// Gets or sets the content when the toggle switch is in the 'off' state.
 	/// </summary>
-	public string? OffText { get => GetValue(OffTextProperty); set => SetValue(OffTextProperty, value); }
-	#endregion OffText dependency property
+	public object? OffContent { get => GetValue(OffContentProperty); set => SetValue(OffContentProperty, value); }
+	#endregion OffContent dependency property
 
 	#region OnThumbBrush dependency property
 	/// <summary>
