@@ -155,35 +155,52 @@ public class ToggleSwitch : Button
 	public IBrush? OffThumbBrush { get => GetValue(OffThumbBrushProperty); set => SetValue(OffThumbBrushProperty, value); }
 	#endregion OnBackground dependency property
 
-
+	#region methods
+	/// <summary>
+	/// Invoked when the control's template is applied.
+	/// Updates the control's visual state based on the applied template.
+	/// </summary>
+	/// <param name="e">The event arguments that provides information about the applied template.</param>
 	protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
 	{
 		base.OnApplyTemplate(e);
 		UpdatePseudoClasses();
 	}
 
-	private void OnIsOnChanged(AvaloniaPropertyChangedEventArgs e)
-	{
-		UpdatePseudoClasses();
-	}
+	/// <summary>
+	/// Apply changes when the IsOn property changes.
+	/// </summary>
+	/// <param name="e">The event arguments.</param>
+	private void OnIsOnChanged(AvaloniaPropertyChangedEventArgs e) => UpdatePseudoClasses();
 
-	private void UpdatePseudoClasses()
-	{
-		// On active ou désactive la pseudo-classe :checked selon IsOn
-		PseudoClasses.Set(":checked", IsOn);
-	}
+	/// <summary>
+	/// Enable or disable pseudo-classes according to the current state.
+	/// </summary>
+	private void UpdatePseudoClasses() => PseudoClasses.Set(":checked", IsOn);
+	#endregion methods
 }
 
+/// <summary>
+/// Converter used to compute the thumb offset for the thumb animation.
+/// </summary>
 public class ThumbOffsetConverter : IMultiValueConverter
 {
 	private static readonly TransformOperations _identity = TransformOperations.Identity;
 
+	/// <summary>
+	/// Convert the input values to calculate the thumb offset.
+	/// Two values are expected : trackWidth and thumbWidth.
+	/// The resulting offset is used to translate the thumb when the switch state is toggled.
+	/// </summary>
+	/// <param name="values">The input values.</param>
+	/// <param name="targetType">The target type.</param>
+	/// <param name="parameter">A parameter for the converter. Unused here.</param>
+	/// <param name="culture">The culture information.</param>
+	/// <returns>A <see cref="TransformOperations"/> instance for the animation.</returns>
 	public object? Convert(IList<object?> values, Type targetType, object? parameter, CultureInfo culture)
 	{
-		// we expect 2 values : trackWidth and thumbWidth
 		if (values.Count >= 2 && values[0] is double trackWidth && values[1] is double thumbWidth)
 		{
-			//return TransformOperations.Parse($"translate({trackWidth - thumbWidth}px,0)");
 			var builder = TransformOperations.CreateBuilder(1);
 			builder.AppendTranslate(trackWidth - thumbWidth, 0);
 			return builder.Build();
