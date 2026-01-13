@@ -13,6 +13,7 @@
     <Setter Property="BorderBrush" Value="{Binding OffBorderBrush, RelativeSource={RelativeSource Self}}"/>
     <Setter Property="Background" Value="{Binding OffBackground, RelativeSource={RelativeSource Self}}"/>
     <Setter Property="Content" Value="{Binding OffContent, RelativeSource={RelativeSource Self}}"/>
+    <Setter Property="ThumbBrush" Value="{Binding OffThumbBrush, RelativeSource={RelativeSource Self}}"/>
     <Setter Property="Template">
       <ControlTemplate>
         <Border x:Name="PART_Track"
