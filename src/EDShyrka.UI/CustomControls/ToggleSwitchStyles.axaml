@@ -1,11 +1,18 @@
 <Styles xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:sys="using:System"
         xmlns:ctrl="clr-namespace:EDShyrka.UI.CustomControls">
+  <Design.PreviewWith>
+    <Border Padding="10">
+      <ctrl:ToggleSwitch />
+    </Border>
+  </Design.PreviewWith>
 
   <Styles.Resources>
-    <ctrl:ThumbOffsetConverter x:Key="ThumbOffsetConverter" />
+  <sys:TimeSpan x:Key="TransitionDuration">0:0:0.2</sys:TimeSpan>
+  <ctrl:ThumbOffsetConverter x:Key="ThumbOffsetConverter" />
   </Styles.Resources>
-  
+
   <Style Selector="ctrl|ToggleSwitch">
     <Setter Property="MinWidth" Value="100"/>
     <Setter Property="MinHeight" Value="40"/>
@@ -25,8 +32,8 @@
 
           <Border.Transitions>
             <Transitions>
-              <BrushTransition Property="BorderBrush" Duration="0:0:0.2" />
-              <BrushTransition Property="Background" Duration="0:0:0.2" />
+              <BrushTransition Property="BorderBrush" Duration="{StaticResource TransitionDuration}" />
+              <BrushTransition Property="Background" Duration="{StaticResource TransitionDuration}" />
             </Transitions>
           </Border.Transitions>
 
@@ -41,11 +48,11 @@
               <Ellipse.Width>
                 <Binding Path="Bounds.Height" RelativeSource="{RelativeSource Self}" />
               </Ellipse.Width>
-              
+
               <Ellipse.Transitions>
                 <Transitions>
-                  <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.2" Easing="CubicEaseInOut" />
-                  <BrushTransition Property="Fill" Duration="0:0:0.2" />
+                  <TransformOperationsTransition Property="RenderTransform" Duration="{StaticResource TransitionDuration}" Easing="CubicEaseInOut" />
+                  <BrushTransition Property="Fill" Duration="{StaticResource TransitionDuration}" />
                 </Transitions>
               </Ellipse.Transitions>
             </Ellipse>
