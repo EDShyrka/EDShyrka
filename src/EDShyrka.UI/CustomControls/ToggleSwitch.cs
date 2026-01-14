@@ -49,7 +49,7 @@ public class ToggleSwitch : Button
 	/// <summary>
 	/// Identifies the ThumbBrush dependency property.
 	/// </summary>
-	public static readonly StyledProperty<IBrush?> ThumbBrushProperty = AvaloniaProperty.Register<ToggleSwitch, IBrush?>(nameof(ThumbBrush), Brushes.White);
+	public static readonly StyledProperty<IBrush?> ThumbBrushProperty = AvaloniaProperty.Register<ToggleSwitch, IBrush?>(nameof(ThumbBrush));
 
 	/// <summary>
 	/// Gets or sets the thumb brush used by the template.
@@ -61,10 +61,11 @@ public class ToggleSwitch : Button
 	/// <summary>
 	/// Identifies the OnBorderBrush dependency property.
 	/// </summary>
-	public static readonly StyledProperty<IBrush?> OnBorderBrushProperty = AvaloniaProperty.Register<ToggleSwitch, IBrush?>(nameof(OnBorderBrush));
+	public static readonly StyledProperty<IBrush?> OnBorderBrushProperty = AvaloniaProperty.Register<ToggleSwitch, IBrush?>(nameof(OnBorderBrush), Brushes.DarkGray);
 
 	/// <summary>
 	/// Gets or sets the border brush when the toggle switch is in the 'on' state.
+	/// Default is dark gray.
 	/// </summary>
 	public IBrush? OnBorderBrush { get => GetValue(OnBorderBrushProperty); set => SetValue(OnBorderBrushProperty, value); }
 	#endregion OnBorderBrush dependency property
@@ -73,10 +74,11 @@ public class ToggleSwitch : Button
 	/// <summary>
 	/// Identifies the OffBorderBrush dependency property.
 	/// </summary>
-	public static readonly StyledProperty<IBrush?> OffBorderBrushProperty = AvaloniaProperty.Register<ToggleSwitch, IBrush?>(nameof(OffBorderBrush));
+	public static readonly StyledProperty<IBrush?> OffBorderBrushProperty = AvaloniaProperty.Register<ToggleSwitch, IBrush?>(nameof(OffBorderBrush), Brushes.DarkGray);
 
 	/// <summary>
 	/// Gets or sets the border brush when the toggle switch is in the 'off' state.
+	/// Default is dark gray.
 	/// </summary>
 	public IBrush? OffBorderBrush { get => GetValue(OffBorderBrushProperty); set => SetValue(OffBorderBrushProperty, value); }
 	#endregion OffBorderBrush dependency property
@@ -85,10 +87,11 @@ public class ToggleSwitch : Button
 	/// <summary>
 	/// Identifies the OnBackground dependency property.
 	/// </summary>
-	public static readonly StyledProperty<IBrush?> OnBackgroundProperty = AvaloniaProperty.Register<ToggleSwitch, IBrush?>(nameof(OnBackground));
+	public static readonly StyledProperty<IBrush?> OnBackgroundProperty = AvaloniaProperty.Register<ToggleSwitch, IBrush?>(nameof(OnBackground), Brushes.Gray);
 
 	/// <summary>
 	/// Gets or sets the background brush when the toggle switch is in the 'on' state.
+	/// Default is gray.
 	/// </summary>
 	public IBrush? OnBackground { get => GetValue(OnBackgroundProperty); set => SetValue(OnBackgroundProperty, value); }
 	#endregion OnBackground dependency property
@@ -97,10 +100,11 @@ public class ToggleSwitch : Button
 	/// <summary>
 	/// Identifies the OffBackground dependency property.
 	/// </summary>
-	public static readonly StyledProperty<IBrush?> OffBackgroundProperty = AvaloniaProperty.Register<ToggleSwitch, IBrush?>(nameof(OffBackground));
+	public static readonly StyledProperty<IBrush?> OffBackgroundProperty = AvaloniaProperty.Register<ToggleSwitch, IBrush?>(nameof(OffBackground), Brushes.Gray);
 
 	/// <summary>
 	/// Gets or sets the background brush when the toggle switch is in the 'off' state.
+	/// Default is gray.
 	/// </summary>
 	public IBrush? OffBackground { get => GetValue(OffBackgroundProperty); set => SetValue(OffBackgroundProperty, value); }
 	#endregion OffBackground dependency property
@@ -113,6 +117,7 @@ public class ToggleSwitch : Button
 
 	/// <summary>
 	/// Gets or sets the content when the toggle switch is in the 'on' state.
+	/// Fefault is 'ON' text.
 	/// </summary>
 	public object? OnContent { get => GetValue(OnContentProperty); set => SetValue(OnContentProperty, value); }
 	#endregion OnContent dependency property
@@ -125,6 +130,7 @@ public class ToggleSwitch : Button
 
 	/// <summary>
 	/// Gets or sets the content when the toggle switch is in the 'off' state.
+	/// Default is 'OFF' text.
 	/// </summary>
 	public object? OffContent { get => GetValue(OffContentProperty); set => SetValue(OffContentProperty, value); }
 	#endregion OffContent dependency property
@@ -133,27 +139,27 @@ public class ToggleSwitch : Button
 	/// <summary>
 	/// Identifies the OnThumbBrush dependency property.
 	/// </summary>
-	public static readonly StyledProperty<IBrush?> OnThumbBrushProperty =
-		AvaloniaProperty.Register<ToggleSwitch, IBrush?>(nameof(OnThumbBrush), Brushes.White);
+	public static readonly StyledProperty<IBrush?> OnThumbBrushProperty = AvaloniaProperty.Register<ToggleSwitch, IBrush?>(nameof(OnThumbBrush), Brushes.White);
 
 	/// <summary>
 	/// Gets or sets the thumb brush when the toggle switch is in the 'on' state.
+	/// Default is white.
 	/// </summary>
 	public IBrush? OnThumbBrush { get => GetValue(OnThumbBrushProperty); set => SetValue(OnThumbBrushProperty, value); }
-	#endregion OnBackground dependency property
+	#endregion OnThumbBrush dependency property
 
-	#region OnBackground dependency property
+	#region OffThumbBrush dependency property
 	/// <summary>
-	/// Identifies the OnBackground dependency property.
+	/// Identifies the OffThumbBrush dependency property.
 	/// </summary>
-	public static readonly StyledProperty<IBrush?> OffThumbBrushProperty =
-		AvaloniaProperty.Register<ToggleSwitch, IBrush?>(nameof(OffThumbBrush), Brushes.White);
+	public static readonly StyledProperty<IBrush?> OffThumbBrushProperty = AvaloniaProperty.Register<ToggleSwitch, IBrush?>(nameof(OffThumbBrush), Brushes.White);
 
 	/// <summary>
 	/// Gets or sets the thumb brush when the toggle switch is in the 'off' state.
+	/// Default is white.
 	/// </summary>
 	public IBrush? OffThumbBrush { get => GetValue(OffThumbBrushProperty); set => SetValue(OffThumbBrushProperty, value); }
-	#endregion OnBackground dependency property
+	#endregion OffThumbBrush dependency property
 
 	#region methods
 	/// <summary>
