@@ -9,8 +9,8 @@
   </Design.PreviewWith>
 
   <Styles.Resources>
-  <sys:TimeSpan x:Key="TransitionDuration">0:0:0.2</sys:TimeSpan>
-  <ctrl:ThumbOffsetConverter x:Key="ThumbOffsetConverter" />
+    <sys:TimeSpan x:Key="TransitionDuration">0:0:0.2</sys:TimeSpan>
+    <ctrl:ThumbOffsetConverter x:Key="ThumbOffsetConverter" />
   </Styles.Resources>
 
   <Style Selector="ctrl|ToggleSwitch">
@@ -42,13 +42,18 @@
                               Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}"
                               HorizontalAlignment="Center" VerticalAlignment="Center" />
 
-            <Ellipse x:Name="PART_Thumb"
-                     Fill="{TemplateBinding ThumbBrush}"
+            <Ellipse Fill="{TemplateBinding ThumbBrush}"
                      HorizontalAlignment="Left" VerticalAlignment="Stretch">
               <Ellipse.Width>
                 <Binding Path="Bounds.Height" RelativeSource="{RelativeSource Self}" />
               </Ellipse.Width>
-
+              <Ellipse.RenderTransform>
+                <MultiBinding Converter="{StaticResource ThumbOffsetConverter}">
+                  <Binding Path="IsOn" RelativeSource="{RelativeSource AncestorType=ctrl:ToggleSwitch}" />
+                  <Binding Path="Bounds.Width" RelativeSource="{RelativeSource AncestorType=Panel}" />
+                  <Binding Path="Bounds.Width" RelativeSource="{RelativeSource Self}" />
+                </MultiBinding>
+              </Ellipse.RenderTransform>
               <Ellipse.Transitions>
                 <Transitions>
                   <TransformOperationsTransition Property="RenderTransform" Duration="{StaticResource TransitionDuration}" Easing="CubicEaseInOut" />
@@ -69,15 +74,6 @@
 
     <Style Selector="^:checked /template/ ContentPresenter#PART_ContentPresenter">
       <Setter Property="Content" Value="{Binding OnContent, RelativeSource={RelativeSource AncestorType=ctrl:ToggleSwitch}}" />
-    </Style>
-
-    <Style Selector="^:checked /template/ Ellipse#PART_Thumb">
-      <Setter Property="RenderTransform">
-        <MultiBinding Converter="{StaticResource ThumbOffsetConverter}">
-          <Binding Path="Bounds.Width" RelativeSource="{RelativeSource AncestorType=Panel}" />
-          <Binding Path="Bounds.Width" RelativeSource="{RelativeSource Self}" />
-        </MultiBinding>
-      </Setter>
     </Style>
 
   </Style>

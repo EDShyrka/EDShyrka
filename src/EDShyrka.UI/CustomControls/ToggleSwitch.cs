@@ -195,7 +195,7 @@ public class ThumbOffsetConverter : IMultiValueConverter
 
 	/// <summary>
 	/// Convert the input values to calculate the thumb offset.
-	/// Two values are expected : trackWidth and thumbWidth.
+	/// The converter expect 3 values : isOn, trackWidth and thumbWidth.
 	/// The resulting offset is used to translate the thumb when the switch state is toggled.
 	/// </summary>
 	/// <param name="values">The input values.</param>
@@ -205,7 +205,8 @@ public class ThumbOffsetConverter : IMultiValueConverter
 	/// <returns>A <see cref="TransformOperations"/> instance for the animation.</returns>
 	public object? Convert(IList<object?> values, Type targetType, object? parameter, CultureInfo culture)
 	{
-		if (values.Count >= 2 && values[0] is double trackWidth && values[1] is double thumbWidth)
+		if (values.Count >= 3 && values[0] is bool isOn && isOn
+			&& values[1] is double trackWidth && values[2] is double thumbWidth)
 		{
 			var builder = TransformOperations.CreateBuilder(1);
 			builder.AppendTranslate(trackWidth - thumbWidth, 0);
