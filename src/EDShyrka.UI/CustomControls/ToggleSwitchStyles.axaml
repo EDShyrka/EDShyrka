@@ -1,0 +1,80 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:sys="using:System"
+        xmlns:ctrl="clr-namespace:EDShyrka.UI.CustomControls">
+  <Design.PreviewWith>
+    <Border Padding="10">
+      <ctrl:ToggleSwitch />
+    </Border>
+  </Design.PreviewWith>
+
+  <Styles.Resources>
+    <sys:TimeSpan x:Key="TransitionDuration">0:0:0.2</sys:TimeSpan>
+    <ctrl:ThumbOffsetConverter x:Key="ThumbOffsetConverter" />
+  </Styles.Resources>
+
+  <Style Selector="ctrl|ToggleSwitch">
+    <Setter Property="MinWidth" Value="100"/>
+    <Setter Property="MinHeight" Value="40"/>
+    <Setter Property="Padding" Value="4"/>
+    <Setter Property="BorderBrush" Value="{Binding OffBorderBrush, RelativeSource={RelativeSource Self}}"/>
+    <Setter Property="Background" Value="{Binding OffBackground, RelativeSource={RelativeSource Self}}"/>
+    <Setter Property="Content" Value="{Binding OffContent, RelativeSource={RelativeSource Self}}"/>
+    <Setter Property="ThumbBrush" Value="{Binding OffThumbBrush, RelativeSource={RelativeSource Self}}"/>
+    <Setter Property="Template">
+      <ControlTemplate>
+        <Border x:Name="PART_Track"
+                CornerRadius="99999"
+                Background="{TemplateBinding Background}"
+                BorderThickness="{TemplateBinding BorderThickness}"
+                BorderBrush="{TemplateBinding BorderBrush}"
+                Padding="{TemplateBinding Padding}">
+
+          <Border.Transitions>
+            <Transitions>
+              <BrushTransition Property="BorderBrush" Duration="{StaticResource TransitionDuration}" />
+              <BrushTransition Property="Background" Duration="{StaticResource TransitionDuration}" />
+            </Transitions>
+          </Border.Transitions>
+
+          <Panel>
+            <ContentPresenter x:Name="PART_ContentPresenter"
+                              Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}"
+                              HorizontalAlignment="Center" VerticalAlignment="Center" />
+
+            <Ellipse Fill="{TemplateBinding ThumbBrush}"
+                     HorizontalAlignment="Left" VerticalAlignment="Stretch">
+              <Ellipse.Width>
+                <Binding Path="Bounds.Height" RelativeSource="{RelativeSource Self}" />
+              </Ellipse.Width>
+              <Ellipse.RenderTransform>
+                <MultiBinding Converter="{StaticResource ThumbOffsetConverter}">
+                  <Binding Path="IsOn" RelativeSource="{RelativeSource AncestorType=ctrl:ToggleSwitch}" />
+                  <Binding Path="Bounds.Width" RelativeSource="{RelativeSource AncestorType=Panel}" />
+                  <Binding Path="Bounds.Width" RelativeSource="{RelativeSource Self}" />
+                </MultiBinding>
+              </Ellipse.RenderTransform>
+              <Ellipse.Transitions>
+                <Transitions>
+                  <TransformOperationsTransition Property="RenderTransform" Duration="{StaticResource TransitionDuration}" Easing="CubicEaseInOut" />
+                  <BrushTransition Property="Fill" Duration="{StaticResource TransitionDuration}" />
+                </Transitions>
+              </Ellipse.Transitions>
+            </Ellipse>
+          </Panel>
+        </Border>
+      </ControlTemplate>
+    </Setter>
+
+    <Style Selector="^:checked">
+      <Setter Property="Background" Value="{Binding OnBackground, RelativeSource={RelativeSource Self}}" />
+      <Setter Property="BorderBrush" Value="{Binding OnBorderBrush, RelativeSource={RelativeSource Self}}" />
+      <Setter Property="ThumbBrush" Value="{Binding OnThumbBrush, RelativeSource={RelativeSource Self}}" />
+    </Style>
+
+    <Style Selector="^:checked /template/ ContentPresenter#PART_ContentPresenter">
+      <Setter Property="Content" Value="{Binding OnContent, RelativeSource={RelativeSource AncestorType=ctrl:ToggleSwitch}}" />
+    </Style>
+
+  </Style>
+</Styles>
