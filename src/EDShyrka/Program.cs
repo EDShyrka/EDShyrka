@@ -30,7 +30,7 @@ sealed class Program
 		var hostingTask = browserHosting.StartAsync(args, out var hostingCancellationTokenSource);
 
 		// The hosting task is started, now we can run the Avalonia application.
-		args = [ $"http://localhost:{browserHosting.ServerSettings.ListeningPort}/" ];
+		args = [ browserHosting.ServerUri.ToString() ];
 		BuildAvaloniaApp()
 			.StartWithClassicDesktopLifetime(args);
 

@@ -6,21 +6,24 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
 using System;
+using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace EDShyrka
 {
-    internal class BrowserHosting
-    {
+	internal class BrowserHosting
+	{
 		public ServerSettings ServerSettings { get; } = new();
 
+		public Uri ServerUri { get; private set; }
+
 		public Task StartAsync(string[] args, out CancellationTokenSource cancellationTokenSource)
-        {
-            // Set the content root to the wwwroot directory where static files are served from.
-            var contentRoot = System.IO.Path.Combine(AppContext.BaseDirectory, @"wwwroot");
-            var webApplicationOptions = new WebApplicationOptions { Args = args };
-            var builder = WebApplication.CreateBuilder(webApplicationOptions);
+		{
+			// Set the content root to the wwwroot directory where static files are served from.
+			var contentRoot = System.IO.Path.Combine(AppContext.BaseDirectory, @"wwwroot");
+			var webApplicationOptions = new WebApplicationOptions { Args = args };
+			var builder = WebApplication.CreateBuilder(webApplicationOptions);
 
 			var configurationBuilder = builder.Configuration;
 			configurationBuilder.Sources.Clear();
@@ -30,23 +33,62 @@ namespace EDShyrka
 
 			builder.WebHost.UseKestrelCore().ConfigureKestrel(ConfigureKestrel);
 			builder.Services.AddControllers();
-            builder.Services.AddSingleton<Interfaces.IClientsManager, Services.ClientsManager>();
+			builder.Services.AddSingleton<Interfaces.IClientsManager, Services.ClientsManager>();
 			builder.ConfigureLogging();
-            builder.Services.AddHostedService<Services.CommunicationWorker>();
+			builder.Services.AddHostedService<Services.CommunicationWorker>();
+			builder.Services.AddSingleton<EDJournal.FileWatchers.EDJournalFolder>();
+			builder.Services.AddSingleton<EDJournal.FileWatchers.EDJournalLogsWatcher>();
+			builder.Services.AddSingleton<EDJournal.FileWatchers.EDJsonFilesWatcher>();
 
-            var app = builder.Build();
-            app.UseDefaultFiles(new DefaultFilesOptions { FileProvider = new PhysicalFileProvider(contentRoot) });
-            app.UseStaticFiles(new StaticFileOptions { FileProvider = new PhysicalFileProvider(contentRoot), ServeUnknownFileTypes = true });
+			var app = builder.Build();
+			app.UseDefaultFiles(new DefaultFilesOptions { FileProvider = new PhysicalFileProvider(contentRoot) });
+			app.UseStaticFiles(new StaticFileOptions { FileProvider = new PhysicalFileProvider(contentRoot), ServeUnknownFileTypes = true });
 			app.UseWebSockets(new WebSocketOptions { });
 			app.MapControllers();
 
+			InitServerUri();
+
 			cancellationTokenSource = new CancellationTokenSource();
-            return app.StartAsync(cancellationTokenSource.Token);
-        }
+			return app.StartAsync(cancellationTokenSource.Token);
+		}
+
+		private void InitServerUri()
+		{
+			var builder = new UriBuilder
+			{
+				Scheme = "http",
+				Host = GetHostName(),
+				Port = ServerSettings.ListeningPort
+			};
+			ServerUri = builder.Uri;
+		}
 
 		private void ConfigureKestrel(WebHostBuilderContext webHostBuilderContext, KestrelServerOptions options)
 		{
 			options.ListenAnyIP(ServerSettings.ListeningPort);
 		}
+
+
+		/// <summary>
+		/// Get the hostname for the local machine, with fallbacks for reliability.
+		/// </summary>
+		/// <returns>The hostname to use for remote connections.</returns>
+		private string GetHostName()
+		{
+			try
+			{
+				var hostname = Dns.GetHostName();
+				var hostEntry = Dns.GetHostEntry(hostname);
+				return hostEntry.HostName;
+			}
+			catch
+			{
+				// Ignore and fallback
+			}
+
+			// Fallback to Environment.MachineName
+			return Environment.MachineName;
+		}
+
 	}
 }
