@@ -1,0 +1,21 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:ctrl="using:EDShyrka.UI.CustomControls"
+        xmlns:animation="using:Avalonia.Animation">
+  <Design.PreviewWith>
+    <Border Padding="20">
+      <!-- Add Controls for Previewer Here -->
+    </Border>
+  </Design.PreviewWith>
+
+  <Style Selector="ctrl|CircularPageViewer">
+    <Setter Property="HorizontalAlignment" Value="Stretch" />
+    <Setter Property="VerticalAlignment" Value="Stretch" />
+    <Setter Property="Template">
+      <ControlTemplate>
+        <TransitioningContentControl Name="PART_ContentControl"
+                                     Content="{TemplateBinding CurrentItem}" />
+      </ControlTemplate>
+    </Setter>
+  </Style>
+</Styles>
