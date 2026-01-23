@@ -18,5 +18,10 @@
     <cc:AnimatedShyrka Grid.Row="0"
         HorizontalAlignment="Left" VerticalAlignment="Top" />
 
+    <cc:CircularPageViewer Grid.Row="1"
+              ItemsSource="{Binding Items}"
+              CurrentItem="{Binding CurrentItem}"
+              IsMouseWheelEnabled="True" />
+
   </Grid>
 </UserControl>

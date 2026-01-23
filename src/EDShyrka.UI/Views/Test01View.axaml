@@ -1,0 +1,14 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="EDShyrka.UI.Views.Test01View">
+  <Grid Background="{DynamicResource ThemeBackground}">
+    <Image Source="avares://EDShyrka.UI/Assets/avalonia-logo.ico"
+           HorizontalAlignment="Center"
+           VerticalAlignment="Center"
+           Stretch="Uniform"
+           Width="400" Height="300"/>
+  </Grid>
+</UserControl>

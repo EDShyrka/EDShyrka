@@ -2,6 +2,7 @@ using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Data.Core.Plugins;
 using Avalonia.Markup.Xaml;
+using EDShyrka.UI.DataTemplates;
 using EDShyrka.UI.Models;
 using EDShyrka.UI.Services;
 using EDShyrka.UI.ViewModels;
@@ -18,13 +19,15 @@ public partial class App : Application
 	/// <summary>
 	/// Provide access to <see cref="IServiceProvider"/> instance.
 	/// </summary>
-	public IServiceProvider ServiceProvider { get; init; } = ConfigureServices();
+	public static IServiceProvider ServiceProvider { get; } = ConfigureServices();
 	#endregion properties
 
 	#region methods
 	public override void Initialize()
 	{
 		AvaloniaXamlLoader.Load(this);
+		var dataTemplate = ServiceProvider.GetRequiredService<ViewDescriptionTemplate>();
+		DataTemplates.Add(dataTemplate);
 	}
 
 	public override void OnFrameworkInitializationCompleted()
@@ -50,13 +53,18 @@ public partial class App : Application
 	private static IServiceProvider ConfigureServices()
 	{
 		var collection = new ServiceCollection()
+			.AddSingleton<MainWindow>()
 			.AddSingleton<AppSettings>()
 			.AddSingleton<CommunicationService>()
-			.AddSingleton<MainWindow>()
-			.AddTransient<MainView>()
+			.AddSingleton<ViewDescriptionTemplate>()
+			// Views
+			.AddSingleton<MainView>()
+			.AddTransient<TestView>()
+			.AddTransient<Test01View>()
+			.AddTransient<Test02View>()
+			// ViewModels
 			.AddSingleton<MainViewModel>()
-			.AddTransient<ShipStatusView>()
-			.AddTransient<ShipStatusViewModel>()
+			.AddTransient<TestViewModel>()
 			;
 		return collection.BuildServiceProvider();
 	}

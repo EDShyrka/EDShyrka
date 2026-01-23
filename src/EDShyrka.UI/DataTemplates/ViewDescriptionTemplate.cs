@@ -45,4 +45,8 @@ public class ViewDescriptionTemplate : IDataTemplate
 	}
 }
 
+/// <summary>
+/// Describe a view for use in data template.
+/// </summary>
+/// <param name="Name">The view's name</param>
 public record ViewDescription(string Name);

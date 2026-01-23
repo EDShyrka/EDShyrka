@@ -2,9 +2,9 @@ using Avalonia.Controls;
 
 namespace EDShyrka.UI.Views;
 
-public partial class MainView : UserControl
+public partial class Test01View : UserControl
 {
-    public MainView()
+    public Test01View()
     {
         InitializeComponent();
     }
