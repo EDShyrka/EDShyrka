@@ -21,7 +21,7 @@ namespace EDShyrka
 		public Task StartAsync(string[] args, out CancellationTokenSource cancellationTokenSource)
 		{
 			// Set the content root to the wwwroot directory where static files are served from.
-			var contentRoot = System.IO.Path.Combine(AppContext.BaseDirectory, @"wwwroot");
+			var contentRoot = System.IO.Path.Combine(AppContext.BaseDirectory, "wwwroot");
 			var webApplicationOptions = new WebApplicationOptions { Args = args };
 			var builder = WebApplication.CreateBuilder(webApplicationOptions);
 

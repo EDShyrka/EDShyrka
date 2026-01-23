@@ -1,15 +1,9 @@
-﻿using EDShyrka.Interfaces;
+﻿using EDShyrka.EDJournal.FileWatchers;
+using EDShyrka.Interfaces;
 using EDShyrka.Shared;
-using EDShyrka.UI;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using System;
-using System.Collections.Concurrent;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Net.WebSockets;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -24,7 +18,7 @@ namespace EDShyrka.Services
 		private readonly ILogger _logger;
 		private readonly IClientsManager _clientsManager;
 
-		public CommunicationWorker(ILogger<CommunicationWorker> logger, IClientsManager clientsManager)
+		public CommunicationWorker(ILogger<CommunicationWorker> logger, IClientsManager clientsManager, EDJournalLogsWatcher journalWatcher, EDJsonFilesWatcher jsonFilesWatcher)
 		{
 			_logger = logger;
 			_clientsManager = clientsManager;
@@ -47,7 +41,7 @@ namespace EDShyrka.Services
 		private void OnClientRequestReceived(object sender, WebSocketWrapper.RequestReceivedEventArgs args)
 		{
 			//_clientsManager.BroadcastAsync(Encoding.UTF8.GetString(args.Data));
-			foreach(var client in _clientsManager.Clients)
+			foreach (var client in _clientsManager.Clients)
 				client.SendAsync(new Memory<byte>(args.Data), CancellationToken.None);
 		}
 
