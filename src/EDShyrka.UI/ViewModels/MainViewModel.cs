@@ -2,75 +2,58 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using EDShyrka.Shared;
+using EDShyrka.UI.DataTemplates;
 using EDShyrka.UI.Models;
 using EDShyrka.UI.Services;
+using Microsoft.Extensions.DependencyInjection;
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.Linq;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace EDShyrka.UI.ViewModels;
 
 public partial class MainViewModel : ViewModelBase
 {
-	private readonly AppSettings _appSettings;
-	private readonly CommunicationService _communicationService;
-	private readonly ObservableCollection<string> _messages = [];
+	private readonly ObservableCollection<ViewDescription> _items;
 
-	public MainViewModel(AppSettings appSettings,CommunicationService communicationService)
+	public MainViewModel()
 	{
-		_appSettings = appSettings;
-		_communicationService = communicationService;
-		Greeting = AppHelpers.IsRunningAsWebApp
-			? "EDShyrka Browser"
-			: "EDShyrka Desktop";
-		_communicationService.GetConnection().ContinueWith(t => RegisterConnection(t.Result));
+		_items = new()
+			{
+				new("Test"),
+				new ("Test01"),
+				new ("Test02"),
+			};
+
+		CurrentItem = _items.First();
+		NextCommand = new RelayCommand(NextItem);
+		PreviousCommand = new RelayCommand(PreviousItem);
 	}
 
-	private void RegisterConnection(WebSocketWrapper wrapper)
-	{
-		wrapper.RequestReceived += OnRequestReceived;
-
-	}
-
-	private void OnRequestReceived(object sender, WebSocketWrapper.RequestReceivedEventArgs args)
-	{
-		var message = System.Text.Encoding.UTF8.GetString(args.Data);
-		Dispatcher.UIThread.Post(() => _messages.Add($"received: {message}"));
-	}
-
-	public string Greeting { get; }
+	public IEnumerable Items { get => _items; }
 
 	[ObservableProperty]
-	private string _message = "Hello, EDShyrka !";
+	private ViewDescription _currentItem;
 
-	public IEnumerable<string> Messages { get => _messages; }
+	public ICommand NextCommand { get; }
+	public ICommand PreviousCommand { get; }
 
-	[ObservableProperty]
-	private bool _isLandingGearDeployed;
-
-	[RelayCommand]
-	private void OpenInBrowser()
+	private void NextItem()
 	{
-		Process.Start(new ProcessStartInfo { FileName = _appSettings.ServerLocation, UseShellExecute = true });
+		int currentIndex = _items.IndexOf(CurrentItem);
+		int nextIndex = (currentIndex + 1) % _items.Count;
+		CurrentItem = _items[nextIndex];
 	}
 
-	[RelayCommand]
-	private async Task ToggleLandingGear(string parameter)
+	private void PreviousItem()
 	{
-		var buffer = System.Text.Encoding.UTF8.GetBytes(parameter);
-		var connection = await _communicationService.GetConnection();
-		_ = connection.SendAsync(buffer, default);
+		int currentIndex = _items.IndexOf(CurrentItem);
+		int previousIndex = (currentIndex - 1 + _items.Count) % _items.Count;
+		CurrentItem = _items[previousIndex];
 	}
-
-	[RelayCommand]
-	private async Task SendMessage()
-	{
-		var message = Message;
-		Dispatcher.UIThread.Post(() => _messages.Add($"Sending [{message}] to [{_appSettings.ServerLocation}]"));
-		var buffer = System.Text.Encoding.UTF8.GetBytes(message);
-		var connection = await _communicationService.GetConnection();
-		_ = connection.SendAsync(buffer, default);
-	}
-
 }
